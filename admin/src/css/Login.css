@@ -1,0 +1,61 @@
+/* .img{
+    text-align: center;
+    background-image: url(D:\project\react_project\logindemo\src\Assets\red-theater-chairs.jpg);
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    background-size: cover;
+    background-position: center;
+    
+}
+ https://image.shutterstock.com/image-photo/traditional-classically-regal-ornate-rounded-260nw-589258457.jpg 
+.size{
+    margin-top: 100px;
+    margin-left: 900px;
+} */
+
+.size {
+    margin-top: 10vh;
+    margin-left: 60vw;
+  }
+  .style {
+    background-color: #f06292;
+    border-radius: 5vh;
+  }
+  .style:hover {
+    font-style: italic;
+    color: grey;
+    border-radius: 20vh;
+  }
+  .style:hover:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  
+  .style:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    display: flex;
+    height: 1em;
+    width: 100%;
+    border-bottom: 3px solid;
+    margin-top: 10px;
+    opacity: 0;
+    -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
+    transition: opacity 0.5s, transform 0.5s;
+    -webkit-transform: scale(0, 1);
+    transform: scale(0, 1);
+  }
+  
+  .img2 {
+    text-align: center;
+    background-image: url("D:\project\react_project\MovieMood\User\src\Assets\image\chairs.jpg");
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+  

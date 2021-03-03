@@ -1,0 +1,71 @@
+.video-js{
+    display: block;
+    margin-top: 800px;
+}
+.section1{
+    height:100vh;
+    background-image: url(D:\project\react_project\MovieMood\frontend\src\Assets\red-theater-chairs.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+}
+.section2{
+    margin-top: -200px;
+    height: 650px;
+    background-color: rosybrown;
+}
+.section3{
+    height:100vh;
+    background-image: url(D:\project\react_project\MovieMood\frontend\src\Assets\demo1.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.section4{    
+    height: 750px;
+    background-color: rosybrown;
+    margin-top: -200px;
+}
+.section5{
+   height:100vh;
+    background-image: url(D:\project\react_project\MovieMood\frontend\src\Assets\demo2.png);
+    background-attachment: fixed;
+    background-size: cover;
+    margin-top: -100px;
+}
+
+.section6{    
+    height: 750px;
+    background-color: rosybrown;
+    margin-top: -200px;
+}
+
+
+
+.section7{
+    height:100vh;
+    background-image: url(D:\project\react_project\MovieMood\frontend\src\Assets\demo3.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    margin-top: -100px;
+}
+
+.section8{    
+    height: 650px;
+    background-color: rosybrown;
+    margin-top: -200px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
