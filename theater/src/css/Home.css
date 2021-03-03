@@ -1,0 +1,26 @@
+.home__div2 {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.home__poster {
+  width: 70%;
+}
+.cards__div {
+  display: block;
+}
+.home__filterLeft {
+  width: 40%;
+  /* float: left; */
+
+  margin-left: 15px;
+  display: inline-block;
+}
+.home__cardRight {
+  width: 70%;
+}
+.home__body {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}

@@ -1,0 +1,111 @@
+.main__div {
+  width: 100%;
+  /* height: 100px; */
+  margin-bottom: 0;
+  padding-bottom: 0px;
+}
+
+.first {
+  width: 100%;
+  background-color: #39393f;
+  height: 150px;
+  border-bottom: 1px solid lightgray;
+}
+
+.first > ul {
+  width: 80%;
+  display: flex;
+  color: white;
+  margin-left: 180px;
+  list-style: none;
+}
+.ul__div > div > img {
+  margin-top: 25px;
+  height: 70px;
+  margin-left: 20px;
+
+  /* background-color: #ffffff; */
+}
+.boxoffice:hover { 
+  content: url("D:\project\react_project\MovieMood\user\src\Assets\image\boxoffice.svg");
+}
+.FAQ:hover {
+  content: url("D:\project\react_project\MovieMood\user\src\Assets\image\faq.svg");
+}
+.feedback:hover {
+  content: url("D:\project\react_project\MovieMood\user\src\Assets\image\feedback.svg");
+}
+.aboutus:hover {
+  content: url("D:\project\react_project\MovieMood\user\src\Assets\image\about-us.svg");
+}
+.contactus:hover {
+  content: url("D:\project\react_project\MovieMood\user\src\Assets\image\customer-care.svg");
+}
+
+.ul__div > div > p {
+  margin-left: 70px;
+  color: gray;
+}
+div > p:hover {
+  color: #ffc107;
+}
+.second {
+  display: flex;
+  width: 100%;
+  background-color: #2f2f34;
+  height: 200px;
+  border-bottom: 1px solid lightgray;
+}
+
+.second > ul {
+  margin-left: 260px;
+  list-style: none;
+  text-align: left;
+}
+.main:hover > .target {
+  color: #ffc107;
+  cursor: pointer;
+}
+.second > ul > p {
+  text-decoration: none;
+  color: white;
+  font-size: 10px;
+  line-height: 20px;
+}
+.second > ul > p:hover {
+  text-decoration: underline solid rgb(66, 131, 240);
+  color: #4283f0;
+  cursor: pointer;
+}
+
+hr {
+  border: 1px solid lightgray;
+}
+.third {
+  background-color: #2f2f34;
+  height: 100px;
+}
+.last__icons > img {
+  height: 40px;
+  width: 40px;
+  margin-right: 15px;
+  margin-top: 10px;
+}
+h3:hover {
+  color: #ffc107;
+}
+.facebook:hover {
+  content: url("D:\project\react_project\MovieMood\user\src\Assets\image\facebook-rol.svg");
+}
+.github:hover {
+  content: url("D:\project\react_project\MovieMood\user\src\Assets\image\github-rol.svg");
+}
+.twitter:hover {
+  content: url("D:\project\react_project\MovieMood\user\src\Assets\image\twitter-rol.svg");
+}
+.linkedin:hover {
+  content: url("D:\project\react_project\MovieMood\user\src\Assets\image\linkedin-rol.svg");
+}
+.insta:hover {
+  content: url("D:\project\react_project\MovieMood\user\src\Assets\image\insta-rol.svg");
+}
