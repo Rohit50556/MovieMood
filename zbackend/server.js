@@ -25,6 +25,7 @@ app.use('/SnacksMenu',routerIndex);
 app.use('/SnacksOrder',routerIndex);
 app.use('/SwapSeatRequest',routerIndex);
 app.use('/Theater',routerIndex);
+app.use('/SendMail',routerIndex);
 
 //DataBase Connection
 const url = "mongodb://localhost:27017/MovieMood";

@@ -6,7 +6,7 @@ var path=require("path")
 
 
 module.exports.getAllMovie = async(req, res) => {
-  //  console.log("hello")
+    console.log("hello")
     await Movie.find()
         .then((m) => (res.send(m)))
         .catch((err) => (console.log(err)));
