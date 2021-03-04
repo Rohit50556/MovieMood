@@ -5,7 +5,7 @@ import "../css/AdminHome.css";
 const AdminHome = () =>{
  return(<>
  <div className="section1"></div> 
-            
+        
             <div className="section2">
                 
             <h1>Booking Details</h1>

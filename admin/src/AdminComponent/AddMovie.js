@@ -26,6 +26,9 @@ const [castdetails,setCast]=useState([])
     }).then(jsonRes => setCast(jsonRes))
   },[])
 
+  while(casts.length > 0) {
+    casts.pop();
+}
   var i=1
   castdetails.forEach(ele=>{
       casts.push(adddata(ele.castName,i))

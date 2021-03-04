@@ -7,6 +7,7 @@ import axios from 'axios'
 var movies=[]
 var movies1=[]
 var str=""
+
 function addMovie(name,id){
        return {name,id}
      }
@@ -47,7 +48,7 @@ const RemoveMovie = () =>{
        }
        function handleClick(){
               console.log(str)
-              if(str=="")
+              if(str==="")
                      alert("Please Select Movie Name")
               else{
                      var link="http://localhost:3030/Movie/deleteMovieByName/"+str
@@ -66,12 +67,12 @@ const RemoveMovie = () =>{
  <div className="removeForm">
  <h1 style={{marginLeft:'30px'}}>Remove Movie</h1>
         <hr />
- <Form style={{marginTop:'30px',marginLeft:'50px'}}>
-    <Form.Row>
-        <Form.Group >
-              <Multiselect options={languageoptions}  displayValue="name" onRemove={handleRemove} onSelect={handleAdd}  />
-       </Form.Group>
-        </Form.Row>
+<Form style={{marginTop:'30px',marginLeft:'50px'}}>
+       <Form.Row>
+              <Form.Group >
+                     <Multiselect options={languageoptions}  displayValue="name" onRemove={handleRemove} onSelect={handleAdd}  />
+              </Form.Group>
+       </Form.Row>
         
         <Button variant="outlined" onClick={handleClick} color="secondary" >
          Remove

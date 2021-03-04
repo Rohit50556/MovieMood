@@ -1,18 +1,15 @@
-import React,{useState,useEffect} from 'react';
-import emailjs from 'emailjs-com';
+import React,{useState} from 'react';
+import axios from 'axios';
 import '../css/Modal.css';
 
 
 export const Modal = ({ show, close,messageto,query }) => {
   
-
-//  console.log("rc="+messageto)
   const [message,setInput]=useState(
     {
       answer:""
     })
 
-    
     function handleChange(event){
        
       const {name,value}=event.target;
@@ -25,34 +22,14 @@ export const Modal = ({ show, close,messageto,query }) => {
       })
   }
 
-  function sendEmail(e) {
-   e.preventDefault();
-   var msg=""
-   msg=message.answer
+  function sendEmail() {
+    var name={
+      query:query,
+      message:message.answer,
+      messageto:messageto
+    }
     
-    e.target.name.value="Movie Mood"
-    e.target.query.value=query
-    e.target.message.value=msg
-    e.target.email.value=messageto
-//    e.target.message=message
-//    cron.schedule("* * * * * *",function(){
-     
-//   e.target.name="name changed"
-console.log(e.target.name.value)
-console.log(e.target.query.value)
-console.log(e.target.email.value)
-console.log(e.target.message.value)
-
-// console.log( e.target.name.value)    
-    emailjs.sendForm('service_1y23j1p','template_rve8qx2', e.target, 'user_NEpIQRUhtcTSXsywCVe1k')
-      .then((result) => {
-          console.log(result.text);
-      }, (error) => {
-          console.log("rohit="+error.text);
-      });
-
-
-     // console.log("sended")
+   axios.post("http://localhost:3030/SendMail/Send",name,{});
    }
 
     return (
@@ -76,14 +53,9 @@ console.log(e.target.message.value)
           <textarea  onChange={handleChange} value={message.answer} name="answer" style={{width:'600px',height:'100px'}} />
         </div>
         <div className="modal-footer">
-        <form className="contact-form" onSubmit={sendEmail} >
-    
-            <input type="hidden" name="name" />
-            <input type="hidden" name="email" />
-            <input type="hidden" name="query" />
-            <input type="hidden" name="message" />
-            <button className="btn-cancel" > Send</button>     
-            </form>
+        <form onSubmit={sendEmail}>
+        <button  className="btn-cancel">Send</button>      
+        </form>
           <button onClick={close} className="btn-cancel">Close</button>
        
         </div>
@@ -91,3 +63,35 @@ console.log(e.target.message.value)
     </div>
   )
 };
+
+
+
+
+
+
+
+
+//     e.target.name.value="Movie Mood"
+//     e.target.query.value=query
+//     e.target.message.value=msg
+//     e.target.email.value=messageto
+// //    e.target.message=message
+// //    cron.schedule("* * * * * *",function(){
+     
+// //   e.target.name="name changed"
+// console.log(e.target.name.value)
+// console.log(e.target.query.value)
+// console.log(e.target.email.value)
+// console.log(e.target.message.value)
+
+// // console.log( e.target.name.value)    
+//     emailjs.sendForm('service_1y23j1p','template_rve8qx2', e.target, 'user_NEpIQRUhtcTSXsywCVe1k')
+//       .then((result) => {
+//           console.log(result.text);
+//       }, (error) => {
+//           console.log("rohit="+error.text);
+//       });
+
+
+
+     // console.log("sended")
