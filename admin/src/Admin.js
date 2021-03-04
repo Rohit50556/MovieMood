@@ -8,7 +8,7 @@ import RemoveMovie from '../../admin/src/AdminComponent/RemoveMovie';
 import UserQuerys from '../../admin/src/AdminComponent/UserQuerys';
 import AdminNavbar from '../../admin/src/AdminComponent/AdminNavbar';
 import Details from '../../admin/src/AdminComponent/Details';
-
+import AddCast from '../../admin/src/AdminComponent/AddCast';
 import './css/Admin.css';
 
 const Admin = () =>{
@@ -19,6 +19,7 @@ const Admin = () =>{
     <Route exact path='/RemoveMovie' component={RemoveMovie}/>
     <Route exact path='/Details' component={Details}/>
     <Route exact path='/UserQuerys' component={UserQuerys}/>
+   <Route exact path='/AddCast' component={AddCast}/>
  </>
  );
 }

@@ -15,19 +15,19 @@ export const SidebarData = [
     icon: <IoIcons.IoIosAddCircle />
   },
   {
-    title: 'RemoveMovie',
-    path: '/RemoveMovie',
-    icon: <IoIcons.IoMdRemoveCircle />
-  },
-  {
     title: 'UserQuerys',
     path: '/UserQuerys',
     icon: <IcIcons.FcFaq />
+  },
+  {
+    title: 'AddCast',
+    path: '/AddCast',
+    icon: <IoIcons.IoIosAddCircle />
+  },
+  {
+    title: 'RemoveMovie',
+    path: '/RemoveMovie',
+    icon: <IoIcons.IoMdRemoveCircle />
   }
-  //,
-  // {
-  //   title: 'Details',
-  //   path: '/Details',
-  //   icon: <IoIcons.IoMdContacts />
-  // }
+  
 ];

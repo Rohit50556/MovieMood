@@ -1,4 +1,4 @@
-.admin,.addmovie,.remove,.userQuery{
+.admin,.addmovie,.remove,.userQuery,.cast{
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,86 +1,38 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {Multiselect} from 'multiselect-react-dropdown';
 import {Button,Form,Col} from "react-bootstrap";
 import "../css/AddMovie.css"
 import axios from 'axios';
 
-// import React, { Component } from 'react';
-// import axios from 'axios';
-// class AddMovie extends Component {
-  
-  
-//   constructor(props) {
-//       super(props);
-//         this.state = {
-//           selectedFile: null
-//         }
-     
-//     }
 
-  
-
-//     onChangeHandler=event=>{
-//       var data=[{
-//         name:"rohit"
-//       },
-//     {
-//       name:"chaudhary"
-//     }]
-//       data[0].name="hello"
-//       data[1].name="hello"
-//       console.log(data[0])
-//       var file = event.target.files[0]
-//        this.setState({
-//        selectedFile: file,
-//     })
-//   }
-//     onClickHandler = () => {
-//       const form = new FormData()
-//         form.append('file', this.state.selectedFile)
-//         var data={
-//           names:"rohit",
-//           fname:'chaudhary'
-//         }
-
-//         form.append('name',data.names)
-//         form.append('name',data.fname)
-        
-        
-//         axios.post("http://localhost:3030/Movie/addMovie", form, {})
-        
-//     }
-  
-//     render() {
-//       return (
-//         <div className="container">
-//             <div className="row">
-//               <div className="offset-md-3 col-md-6">
-//                  <div className="form-group files">
-//                   <label>Upload Your File </label>
-//                   <input type="file" className="form-control"  onChange={this.onChangeHandler}/>
-//                 </div> 
-                
-//                 <button type="button" className="btn btn-success btn-block" onClick={this.onClickHandler}>Upload</button>
-  
-//             </div>
-//         </div>
-//         </div>
-//       );
-//     }
-//   }
-  
-//   export default AddMovie;
-  
-
-
-
-
-
-
-
+var casts=[]
+var castss=[]
+function adddata(Cast,id){
+  return {Cast,id}
+}
 
 const AddMovie = () =>{
- 
+
+casts=castss;
+const [castdetails,setCast]=useState([])
+  useEffect(()=>{
+    fetch('/Cast/getAllCast').then(res=>{
+      if(res.ok){
+        return res.json()
+    }
+    else{
+      console.log("err")
+    }
+    }).then(jsonRes => setCast(jsonRes))
+  },[])
+
+  var i=1
+  castdetails.forEach(ele=>{
+      casts.push(adddata(ele.castName,i))
+//    console.log(ele.castName)
+})
+
+  
   const formdata= new FormData();
   var language=[]
   var genre=[]
@@ -95,6 +47,7 @@ const AddMovie = () =>{
         duration :"" ,
         url:""
     })
+
 
     function handleChange(event){
        
@@ -140,12 +93,7 @@ const AddMovie = () =>{
     {Genre:'Adventure',id:15}
   ]
 
- const casts=[
-      {Cast:'Sunny khatik',id:1},
-      {Cast:'Jenish Dholaria',id:2}, 
-      {Cast:'Rohit Chaudhary',id:3},  
-      {Cast:'Gal Gadot',id:4}
-    ]
+ 
  
 
   const [languageoptions]=useState(languages);
@@ -153,6 +101,7 @@ const AddMovie = () =>{
   const [genreoptions]=useState(genres);
 
   const [castptions]=useState(casts);
+  console.log(castptions)
 
 
   function handleLanguage(item,name){
