@@ -7,13 +7,8 @@ const showSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    startTime: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    endTime: {
-        type: String,
+    Timining: {
+        type: [Number],
         required: true,
         trim: true
     },

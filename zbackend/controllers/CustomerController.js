@@ -79,13 +79,11 @@ module.exports.LoginCustomer = async (req, res)=>{
               user: existingUser._id,
             },
             process.env.JWT_SECRET
-          );
-      
+          );      
           // send the token in a HTTP-only cookie
             console.log("ME inside Login customer");
-          res.cookie("token", token).send();
-
-
+          // res.cookie("token", token).send();
+          res.send(token);
     }catch(err){
         
         console.error(err);
@@ -94,100 +92,50 @@ module.exports.LoginCustomer = async (req, res)=>{
 };
 
 module.exports.LogOutCustomer = async (req,res)=>{
-
-    res.cookie("token", "", {
-      httpOnly: true,
-      expires: new Date(0),
-      secure: true,
-      sameSite: "none",
-    }).send();
-
+    // res.cookie("token", "", {
+    //   httpOnly: true,
+    //   expires: new Date(0),
+    //   secure: true,
+    //   sameSite: "none",
+    // }).send();
+   try{
+      const token = req.token;
+      console.log(token);
+      if(!token){
+            res.status(400).send();
+      }
+      res.send({});    
+   }catch(e){
+      res.status(400).send(e);
+   }
 };
 
 module.exports.isLoggedInc=(req,res)=>{
   try {
-    const token = req.cookies.token;
-    console.log(req.cookies);
+    const token = req.token;
+    // console.log(req.token);
+    // console.log(req.user);
     if (!token){
       return res.json(false);
     }
-
     jwt.verify(token, process.env.JWT_SECRET);
-
     res.send(true);
   } catch (err) {
     res.json(false);
   }
 };
 
+module.exports.getCustomerById= async(req,res)=>{
+  await Customer.findOne({ _id: req.params.id })
+                .then((customer) =>{ res.send(customer);} )
+                .catch((err) =>{ console.log(err);} );
+};
+
+module.exports.getCustomerByName = async(req,res)=>{
+
+  await Customer.findOne({username:req.params.name})
+                  .then((customer)=>{res.send(customer);})
+                  .catch((err) =>{console.log(err);});
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const mongoose = require('mongoose');
-// const express = require("express");
-// const Customer = require("../database/models/Customer");
-
-// module.exports.getAllCustomer = async(req,res)=>{
-//     await Customer.find()
-//         .then((m) => (res.send(m)))
-//         .catch((err) => (console.log(err)));
-// };
-
-// module.exports.addCustomer = async(req,res)=>{
-
-//     var customer = new Customer();
-//     customer.fname= req.body.fname;
-//     customer.lname= req.body.lname;
-//     customer.username=req.body.username;
-//     customer.password=req.body.password;
-//     customer.email=req.body.email;
-//     customer.mobile=req.body.mobile;
-//     customer.image=req.body.image;
-//     customer.gender=req.body.gender;
-//     customer.address=req.body.address;
-//     customer.wallet= req.body.wallet;
-
-//     await customer.save()
-//         .then((data) => (res.send(data)))
-//         .catch((err) => (console.log(err)));
-// };
+};

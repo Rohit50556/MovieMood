@@ -17,7 +17,7 @@ const Card = () => {
   },[])
 
 
-  console.log(img)
+  console.log("thus sis "+img[0].poster)
 
  
   return ( 

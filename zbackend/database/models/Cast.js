@@ -6,13 +6,17 @@ const castSchema = new mongoose.Schema({
         trim: true
     }, 
     castImageUrl :{
-        type: String,
-        trim: true    
+      type: String,
+        trim: true
     }, 
     castDescription :{
         type: String,
         trim: true
-    } 
+    },
+    castRole:{
+        type:String,
+        trim:true
+    }
 });
 
 const Cast = mongoose.model('Cast', castSchema);

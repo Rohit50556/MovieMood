@@ -1,9 +1,11 @@
 import React from "react";
 import Slider from "react-slick";
-import "D:/project/react_project/logindemo/node_modules/slick-carousel/slick/slick.css";
-import "D:/project/react_project/logindemo/node_modules/slick-carousel/slick/slick-theme.css";
+// import "D:/project/react_project/logindemo/node_modules/slick-carousel/slick/slick.css";
+// import "D:/project/react_project/logindemo/node_modules/slick-carousel/slick/slick-theme.css";
 import Woman from "../Assets/image/media-desktop-gift-a-celebrity-wish-0-2020-12-4-t-10-31-2.jpg";
 import "../css/Slider.css";
+import "../../node_modules/slick-carousel/slick/slick.css"
+import "../../node_modules/slick-carousel/slick/slick-theme.css"
 const slider = () => {
   var settings = {
     className: "center",
