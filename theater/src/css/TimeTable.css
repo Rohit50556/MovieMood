@@ -1,0 +1,15 @@
+
+.TheaterTimeTable{
+      height: 100vh;
+    background-image: url(D:\project\react_project\MovieMood\theater\src\Assets\img2.jpg);
+    background-size: cover; /* or contain depending on what you want */
+    background-position: center center;
+   
+}
+.insideForm{
+    margin-top:-600px ;
+    margin-left: 480px;
+    width:750px;
+    border-radius: 20px;
+    background-color: whitesmoke;
+}

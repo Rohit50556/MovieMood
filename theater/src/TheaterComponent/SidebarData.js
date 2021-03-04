@@ -22,10 +22,5 @@ export const SidebarData = [
     title: 'UpdateDetails',
     path: '/UpdateDetails',
     icon: <IoIcons.IoIosPaper />
-  },
-  {
-    title: 'sendMail',
-    path: '/sendMail',
-    icon: <IoIcons.IoMdRemoveCircle />
   }
 ];
