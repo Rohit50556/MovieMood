@@ -19,6 +19,8 @@ const TheaterWithShowTimeContainer = () => {
         <TheaterWithShowTime />
         <TheaterWithShowTime />
         <TheaterWithShowTime />
+        
+        <TheaterWithShowTime />
       </div>
     </div>
   );

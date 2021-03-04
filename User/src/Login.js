@@ -61,6 +61,8 @@ class Login extends React.Component {
 const LoginClass = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [logged,setLogged]=useState(false);
+
   async function loginc(e){
     e.preventDefault();
     try {
@@ -69,12 +71,19 @@ const LoginClass = () => {
         password
       };
 
-      await axios.post(
-        "http://localhost:3030/Customer/LoginCustomer",
-        loginData
-      );
-      // await getLoggedIn();
-      // history.push("/");
+      await axios.post("http://localhost:3030/Customer/LoginCustomer",loginData).then(res=>{
+          localStorage.setItem("token",res.data);
+      });
+
+
+      if(localStorage.getItem("token"))
+      {
+        setLogged(true);
+        console.log(logged)
+      }
+
+      
+
     } catch (err) {
       console.error(err);
     }
@@ -138,3 +147,16 @@ const LoginClass = () => {
 };
 
 export default Login;
+
+
+// axios.post(url,data, {
+//   headers: {
+//       'Authorization': localStorage.getItem("token") }
+// })
+// .then(response => {
+//   // return  response;
+// })
+// .catch((error) => {
+//   //return  error;
+// });
+

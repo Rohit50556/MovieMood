@@ -81,7 +81,33 @@ const Navbar = () => {
           className="scrolled"
         />
       </div>
-    ) : (
+     ) : 
+    //   <div className={scrolled ? "nav_nav scrolled" : "nav_nav"}>
+    //     <img src={LOGO} alt="not avilable" />
+    //     <div className="nav__left">
+    //       <Link className="nav_left_link" to="/">
+    //         <p>Home</p>
+    //       </Link>
+    //       <Link className="nav_left_link" to="/history">
+    //         <p>History</p>
+    //       </Link>
+    //       <Link className="nav_left_link" to="/profile">
+    //         <p>Profile</p>
+    //       </Link>
+    //       <Link className="nav_left_link" to="/swap">
+    //         <p>Swap</p>
+    //       </Link>
+    //       <Link className="nav_left_link" to="/snacks">
+    //         <p>Snacks</p>
+    //       </Link>
+    //     </div>
+    //   </div>
+    // );
+     
+     
+     
+     
+     (
       <div className={scrolled ? "nav__nav scrolled" : "nav__nav"}>
         <img src={LOGO} alt="not avilable" />
         <div className="nav__left">
@@ -92,6 +118,9 @@ const Navbar = () => {
             <p>History</p>
           </Link>
           <Link className="nav_left_link" to="/adjust">
+            <p>Adjust</p>
+          </Link>
+          <Link className="nav_left_link" to="/profile">
             <p>Profile</p>
           </Link>
           <Link className="nav_left_link" to="/swap">
