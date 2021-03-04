@@ -5,19 +5,15 @@ const { Schema } = mongoose;
 const customerSchema = mongoose.Schema({
     fname: {
         type: String,
-        required: true,
         trim: true
     },
     lname: {
         type: String,
-        required: true,
         trim: true
     },
     username: {
         type: String,
-        required: true,
-        trim: true,
-        unique:true
+        trim: true
     },
     password: {
         type: String,
@@ -34,28 +30,14 @@ const customerSchema = mongoose.Schema({
                 throw new Error('email is invalid please enter in correct formate');
             }
         }
-    },
-    mobile: {
-        type: String,
-        unique: true,
-        trim: true,
-        validate(value) {
-            if (!validator.isMobilePhone(value)) {
-                throw new Error('Phone is invalid please enter in correct formate');
-            }
-        }
-    },
-    image: {
-        data: Buffer,
-        contentType: String
-    },
+    }
+    ,
     gender: {
         type: String,
         trim: true
     },
     address: {
         type: String,
-        required:true,
         trim: true
     },
     wallet: {

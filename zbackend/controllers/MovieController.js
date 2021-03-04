@@ -6,10 +6,10 @@ var path=require("path")
 
 
 module.exports.getAllMovie = async(req, res) => {
+  //  console.log("hello")
     await Movie.find()
         .then((m) => (res.send(m)))
         .catch((err) => (console.log(err)));
-    //await Query.find().then(query=>res.json(query)) 
 
 };
 
@@ -57,7 +57,8 @@ module.exports.addMovie = async(req,res)=>{
 
 module.exports.deleteMovieByName = async(req, res) => {
 
-    await Movie.findOneAndRemove({ movieName: req.params.name })
+ // console.log("get")
+    await Movie.findOneAndRemove({ moviename: req.params.name })
         .then((deleted) => (res.send(deleted)))
         .catch((err) => (console.log(err)));
 

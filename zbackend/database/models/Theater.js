@@ -11,10 +11,6 @@ const theatersSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
-    cpass: {
-        type: String,
-        trim: true
-    },
     city: {
         type: String,
         required: true,

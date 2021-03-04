@@ -13,7 +13,12 @@ const SeatSchema = new mongoose.Schema({
     SeatType:{
         type:String,
         trim:true
-    } 
+    },
+    className:{
+        type:String,
+        trim:true,
+        default:"seat"
+    }
 });
 
 const Seat = mongoose.model('Seat', SeatSchema);

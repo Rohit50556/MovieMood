@@ -54,9 +54,14 @@ const bookingSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
-    username: {
+    userName: {
         type: String,
         trim:true
+    },
+    bookingStatus:{
+        type:String,
+        trim:true,
+        default:"Booked"
     }
 });
 
