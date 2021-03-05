@@ -6,14 +6,12 @@ import axios from 'axios';
 
 
 var casts=[]
-var castss=[]
 function adddata(Cast,id){
   return {Cast,id}
 }
 
 const AddMovie = () =>{
 
-casts=castss;
 const [castdetails,setCast]=useState([])
   useEffect(()=>{
     fetch('/Cast/getAllCast').then(res=>{

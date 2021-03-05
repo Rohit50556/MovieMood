@@ -9,7 +9,9 @@ const AddCast=() =>{
         name:"",
         role:"",
         info:"",
+        date:""
     })
+
     function handleChange(event){
        
         const {name,value}=event.target;
@@ -34,8 +36,9 @@ const AddCast=() =>{
         formdata.append('name',data.name);
         formdata.append('info',data.info);
         formdata.append('role',data.role);
+        formdata.append('date',data.date);
         formdata.append('file',file);
-
+        //console.log(data.date)
         axios.post("http://localhost:3030/Cast/addCast",formdata,{})
     }
 
@@ -57,6 +60,10 @@ const AddCast=() =>{
                     <Form.Label>Role In Cineme</Form.Label>
                     <Form.Control type="text" onChange={handleChange} name="role" value={data.role} placeholder="Enter Cast Name"/>
                 </Form.Group>
+                <Form.Group>
+                    <Form.Label>Birth Date</Form.Label>
+                    <Form.Control type="date" formate="DD-MM-YYYY" onChange={handleChange} name="date"  value={data.date} />
+                </Form.Group>
             </Form.Row>
           
             <Form.Row>
@@ -71,7 +78,7 @@ const AddCast=() =>{
                     <Form.Control onChange={handleFile} type="file" name="file" />
                 </Form.Group>
             </Form.Row>
-            <Button onClick={handleClick}>Upload</Button>
+            <Button style={{marginLeft:'300px',marginTop:"-100px "}}onClick={handleClick}>Upload</Button>
             
         </Form>
         </div>
