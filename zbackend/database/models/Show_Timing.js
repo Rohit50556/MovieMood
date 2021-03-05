@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const showSchema = new mongoose.Schema({
     ShowDate: {
-        type: Date,
+        type: String,
         required: true,
         trim: true
     },
@@ -16,12 +16,12 @@ const showSchema = new mongoose.Schema({
         type: Number,
         required: true,
         trim: true
-    },
+    },  
     theaterName: {
         type: String,
         trim: true
     },
-    screen: {
+     screen: {
         type: Number,
         trim: true
     },

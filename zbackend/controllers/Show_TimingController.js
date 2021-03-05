@@ -12,15 +12,16 @@ module.exports.getAllShowTiming = async (req,res) =>{
 
 module.exports.addShowTiming= async (req,res)=>{
 
+   console.log(req.body)
     var showTiming = new ShowTiming();
-    showTiming.ShowDate= req.body.ShowDate;
-    showTiming.startTime = req.body.startTime;
-    showTiming.endTime = req.body.endTime;
+    showTiming.movieName = req.body.mname;
+    showTiming.ShowDate= req.body.dates;
     showTiming.price = req.body.price;
-    showTiming.theaterName = req.body.theaterName;
     showTiming.screen = req.body.screen;
-    showTiming.movieName = req.body.movieName;
-    showTiming.city= req.body.city;
+    showTiming.Timining=req.body.times
+ 
+    showTiming.theaterName = "xyz";
+    showTiming.city= "xyz";
 
     await showTiming.save()
                 .then((m)=>{res.send(m);})
@@ -28,8 +29,21 @@ module.exports.addShowTiming= async (req,res)=>{
 
 };
 
-module.exports.findshow = async(req, res) => {
-    ShowTiming.find({ movieName: req.params.name, city: req.params.city, ShowDate: req.params.date })
+
+
+
+module.exports.getShow = async(req, res) => {
+
+    //console.log("="+req.body)
+    
+    ShowTiming.find({ screen:req.body.scr,ShowDate:req.body.date})
         .then((data) => { res.send(data) })
         .catch((e) => { console.log(e) });
 };
+
+
+// module.exports.findShow = async(req, res) => {
+//     ShowTiming.find({ movieName:req.params.name, city: req.params.city, ShowDate: req.params.date })
+//         .then((data) => { res.send(data) })
+//         .catch((e) => { console.log(e) });
+// };

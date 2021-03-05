@@ -28,10 +28,10 @@ module.exports.getAllCast = async(req,res)=>{
 
 
 module.exports.addCast = async(req,res)=>{
+  
+  upload(req, res, function (err) {  
 
-    upload(req, res, function (err) {  
-
-        console.log(req.body)
+      //  console.log(req.body)
   
               if (err instanceof multer.MulterError) 
                 console.log(err)    
@@ -42,7 +42,8 @@ module.exports.addCast = async(req,res)=>{
             cast.castName = req.body.name;
             cast.castRole= req.body.role;
             cast.castDescription= req.body.info;
-            cast.castImageUrl=req.file.filename
+            cast.castImageUrl=req.file.filename;
+            cast.BirthDate=req.body.date;
 
             cast.save()
                     .then((m)=>{res.send(m)})

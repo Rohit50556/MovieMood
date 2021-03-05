@@ -33,14 +33,15 @@ module.exports.addMovie = async(req,res)=>{
             else if (err)
               console.log(err)
             const movie=new Movie();
- 
               
+            
             movie.moviename=req.body.moviename;
             movie.moviedescription=req.body.movieinfo;
             
             movie.language=req.body.lang;
             movie.genre=req.body.genre;
             movie.cast=req.body.cast;
+
             movie.director=req.body.director;
             movie.duration=req.body.duration;
 
@@ -58,7 +59,7 @@ module.exports.addMovie = async(req,res)=>{
 module.exports.deleteMovieByName = async(req, res) => {
 
  // console.log("get")
-    await Movie.findOneAndRemove({ moviename: req.params.name })
+    await Movie.findOneAndDelete({ moviename: req.params.name })
         .then((deleted) => (res.send(deleted)))
         .catch((err) => (console.log(err)));
 

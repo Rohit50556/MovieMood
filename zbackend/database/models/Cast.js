@@ -16,6 +16,10 @@ const castSchema = new mongoose.Schema({
     castRole:{
         type:String,
         trim:true
+    },
+    BirthDate:{
+        type:String,
+        trim:true
     }
 });
 

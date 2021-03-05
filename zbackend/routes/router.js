@@ -110,6 +110,7 @@ router.post("/addSeat",SeatController.addSeat);
 
 //Routes For ShowTiming
 router.get("/getAllShowTiming",ShowTimingController.getAllShowTiming);
+router.post("/getShow",ShowTimingController.getShow);
 router.post("/addShowTiming",ShowTimingController.addShowTiming);
 // router.get("/findshow/:name/:city/:date", ShowController.findshow);
 
