@@ -1,19 +1,38 @@
 import React,{useState,useEffect} from 'react';
 import {Multiselect} from 'multiselect-react-dropdown';
-import {Form,Col} from 'react-bootstrap';
-import Button from '@material-ui/core/Button';
-//import axios from 'axios';
+import {Form,Col,Button} from 'react-bootstrap';
+import axios from 'axios';
 import "../css/TimeTable.css"
+import { Link } from "react-router-dom";
 
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 
+
+var times1=[]
+var buff=[]
+
+var dates=[]
+var times=[]
 var movies=[]
 var arr=[]
-var str=""
+
+var sno=4
+var scr=""
+var movie=""
+var date=""
+var ptr1=false
+var ptr2=false
+
     
 function addMovie(name,id){
    return {name,id}
+ }
+   
+function addTime(time,id){
+   return {time,id}
+ }
+ 
+function addDate(date,id){
+   return {date,id}
  }
  function add(i,id){
    return {i,id}
@@ -23,10 +42,7 @@ const TimeTable = () =>{
    
    
    const [data,setData]=useState({
-      moviename:"",
-      date:"",
       price:"",
-      totals:""
    })
 
    const [movielist,setMovie]=useState([]);
@@ -35,8 +51,6 @@ const TimeTable = () =>{
    useEffect(()=>{
           fetch('/Movie/getAllMovie').then(res=>{
             if(res.ok){
-               //movies=[]
-
               return res.json()
           }
           else{
@@ -44,7 +58,7 @@ const TimeTable = () =>{
           }
           }).then(jsonRes => setMovie(jsonRes))
         },[])
-        console.log(movielist)
+   //     console.log(movielist)
 
 
         function handleChange(event){
@@ -58,46 +72,213 @@ const TimeTable = () =>{
              }
          })
      }
-        var i=1
+      
+     
+     while(dates.length > 0) {
+      dates.pop();
+      }
+     
+      var currentDate=new Date();
+      var day = currentDate.getDate()
+      var month = currentDate.getMonth() + 1
+      var year = currentDate.getFullYear()
+      dates.push(addDate(day+"/"+month+"/"+year,1))
+      dates.push(addDate((day+1)+"/"+month+"/"+year,2))
+      dates.push(addDate((day+2)+"/"+month+"/"+year,2))
+      
+      const [datelist]=useState(dates);
+     
+
+
+         
+      const [timelist]=useState(times);
+     
+      
+
+      var i=1
       
       while(movies.length > 0) {
          movies.pop();
      }
+
       movielist.forEach(ele=>{
       movies.push(addMovie(ele.moviename,i))
       })
-      console.log("=="+movies)
+     
       const [movielists]=useState(movies);
 
-      function handleAdd(item,obj){
-         str=obj.name
-      }
 
-      function handleRemove(item,obj){
-         str=""
-      }
+
       while(arr.length > 0) {
          arr.pop();
      }
-      for(var k=1;k<=data.totals;k++)
+
+      for(var k=1;k<=sno;k++)
          arr.push(add(k,k));
 
       const [list]=useState(arr);
 
-      console.log(str)
-//       function handleClick(){
-//          console.log(str)
-//          if(str==="")
-//                 alert("Please Select Movie Name")
-//          else{
-//        //         var link="http://localhost:3030/Movie/deleteMovieByName/"+str
-//      //           console.log(link)
-//    //            axios.get(link)
-//          }
-// //                     axios.post("http://localhostdeleteMovieByName")
+      function handleDateAdd(item,name){
+            date=name.date
+            ptr1=true
+            if(ptr1 && ptr2)
+            {
+               console.log("hello")
+            var info={
+               scr:scr,
+               date:date
+            }
+            console.log(info)
+
+            axios.post('http://localhost:3030/ShowTiming/getShow',info).then((res=>{
+               //console.log(res.data[0].Timining)
+               if(res.data[0]===undefined)
+               {
+                  console.log("okkk")
+                  while(times.length > 0) {
+                     times.pop();
+                  }
+
+                     times.push(addTime("8am-11am",1))
+                     times.push(addTime("12pm-3pm",2))
+                     times.push(addTime("4pm-7pm",3))
+                     times.push(addTime("9pm-12am",4))
+
+               }
+               else{
+                  buff=res.data[0].Timining
+                  while(times.length > 0) {
+                     times.pop();
+                  }
+                  
+                  for(var j=1;j<=4;j++)
+                  {
+                     if(j===(buff[j-1]))
+                     {
+                        console.log("yes")
+                     }
+                     else{
+                        if(j===1){times.push(addTime("8am-11am",1))}
+                        else if(j===2){times.push(addTime("12pm-3pm",2))}
+                        else if(j===3){times.push(addTime("4pm-7pm",3))}
+                        else if(j===4){times.push(addTime("9pm-12am",4))}
+                     }
+                  }
+              
+               }
+               
+            }))
+         }
+      }
+      function handleDateRemove(item,name){
+         date=""
+         ptr1=false
          
-  
-//   }
+         //    var index=dates1.indexOf(name.date);
+      //    dates1[index]=""
+       }
+      
+
+      function handleMovieAdd(item,name){
+       //  movies1.push(name.name)  
+            movie=name.name
+      }
+      function handleMovieRemove(item,name){
+         // var index=movies1.indexOf(name.name);
+         // movies1[index]=""
+         movie=""
+      }
+
+      function handletimeAdd(item,name){
+         times1.push(name.id)   
+      }
+      function handletimeRemove(item,name){
+         var index=times1.indexOf(name.id);
+         times1[index]=""
+      }
+
+      function handleScrAdd(item,name){
+        ptr2=true
+         // screens  .push(name.id)  
+         scr=name.id
+         if(ptr1 && ptr2)
+         {
+            console.log("hello")
+         var info={
+            scr:scr,
+            date:date
+         }
+         console.log(info)
+
+         axios.post('http://localhost:3030/ShowTiming/getShow',info).then((res=>{
+            //console.log(res.data[0].Timining)
+            if(res.data[0]===undefined)
+            {
+               console.log("okkk")
+               while(times.length > 0) {
+                  times.pop();
+               }
+
+                  times.push(addTime("8am-11am",1))
+                  times.push(addTime("12pm-3pm",2))
+                  times.push(addTime("4pm-7pm",3))
+                  times.push(addTime("9pm-12am",4))
+
+            }
+            else{
+               buff=res.data[0].Timining
+               while(times.length > 0) {
+                  times.pop();
+               }
+               
+               for(var j=1;j<=4;j++)
+               {
+                  if(j===(buff[j-1]))
+                  {
+                     console.log("yes")
+                  }
+                  else{
+                     if(j===1){times.push(addTime("8am-11am",1))}
+                     else if(j===2){times.push(addTime("12pm-3pm",2))}
+                     else if(j===3){times.push(addTime("4pm-7pm",3))}
+                     else if(j===4){times.push(addTime("9pm-12am",4))}
+                  }
+               }
+           
+            }
+
+             }))
+         }}
+      
+      function handleScrRemove(item,name){
+        ptr2=false
+         scr=""
+      }
+     console.log(ptr1+"="+ptr2)
+      function handleClick(){
+         if(movie===""){alert("please Enter Movie Name")}
+         else{
+         var temp=[]
+         for(let i of dates)
+           i && temp.push(i);
+         dates=temp;
+         
+         temp=[]  
+         for(let i of times)
+            i && temp.push(i);
+         times=temp;
+   
+         var dataInfo={
+            mname:movie,
+            screen:scr,
+            price:data.price,
+            times:times1,
+            dates:date
+         }
+         console.log(date)
+       axios.post('http://localhost:3030/ShowTiming/addShowTiming',dataInfo,{})
+         
+  }}
 
    
  return(<>
@@ -106,68 +287,45 @@ const TimeTable = () =>{
    <div className="insideForm">
    <h1 style={{marginLeft:'480px'}}>Add Show</h1>
    <hr/>
-    <Form style={{width:"600px",marginLeft:'50px'}} >
+    <Form style={{width:"650px",marginLeft:'50px'}} >
       <Form.Row>
-         <Form.Group as={Col} >
-            <Form.Label>Select Movie</Form.Label>
-            <Multiselect options={movielists} displayValue="name" onRemove={handleRemove} onSelect={handleAdd}  />
-         </Form.Group>
-         <Form.Group >
+      
+      <Form.Group  >
+            <Form.Label>Screen Number</Form.Label>      
+              <Multiselect  options={list}  displayValue="i" onRemove={handleScrRemove} onSelect={handleScrAdd}  />
+            </Form.Group>
+         
+      <Form.Group as={Col} >
             <Form.Label>Show Date</Form.Label>
-            <Form.Control type="date" name="date" value={data.date} onChange={handleChange} placeholder="Enter Show Time"/>
-         </Form.Group>
+            <Multiselect  options={datelist}  displayValue="date" placeholder="Date" onRemove={handleDateRemove} onSelect={handleDateAdd}  />      
+     </Form.Group>
+       
       </Form.Row>
 
 
       <Form.Row>
-         <Form.Group as={Col}>
+      <Form.Group >
             <Form.Label >Ticket Price</Form.Label>
             <Form.Control type="number"  name="price" value={data.price} onChange={handleChange} placeholder="Enter Price"/>
          </Form.Group>
-      </Form.Row>
-      
-      <Form.Row>
-      <Form.Group as={Col}>
-         <Form.Label>Enter Total Screen</Form.Label>      
-         <Form.Control type="number" name="totals" value={data.totals} onChange={handleChange} /> 
+         <Form.Group  as={Col} >
+
+      <Form.Label >Select Movie</Form.Label>
+      <Multiselect options={movielists} displayValue="name" onRemove={handleMovieRemove} onSelect={handleMovieAdd}  />
       </Form.Group>
-            <Form.Group style={{marginTop:'-10px'}} as={Col}>
-            <Form.Label>Screen Number</Form.Label>      
-              <Multiselect  options={list}  displayValue="i" onRemove={handleRemove} onSelect={handleAdd}  />
-            </Form.Group>
+
       </Form.Row>
 
 <Form.Row>
-   <Form.Group >
-   <FormControlLabel
-          value="start"
-          control={<Checkbox color="primary" />}
-          label="8Am - 11Am"
-          labelPlacement="start"
-        />
-        <FormControlLabel
-          value="start"
-          control={<Checkbox color="primary" />}
-          label="12pm - 3pm"
-          labelPlacement="start"
-        /><FormControlLabel
-          value="start"
-          control={<Checkbox color="primary" />}
-          label="4pm - 7pm"
-          labelPlacement="start"
-        /><FormControlLabel
-          value="start"
-          control={<Checkbox color="primary" />}
-          label="9pm- 12am"
-          labelPlacement="start"
-        />
-      </Form.Group>
-
-</Form.Row>         
-      <hr />
-      <Button variant="primary" type="submit" style={{marginLeft:'230px'}}>
-        Register
+   <Form.Group as={Col}>
+   <Multiselect  options={timelist}  displayValue="time" placeholder="time" onRemove={handletimeRemove} onSelect={handletimeAdd}  />      
+   </Form.Group>
+</Form.Row>   
+   <Link to="/">
+      <Button variant="primary" onClick={handleClick} style={{marginLeft:'260px'}}>
+        Add 
     </Button>
+    </Link>
    </Form> 
     
    </div>
