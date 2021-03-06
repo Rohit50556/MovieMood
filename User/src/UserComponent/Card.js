@@ -9,22 +9,26 @@ const Card = () => {
   }])
   
   useEffect(()=>{
-    fetch('/Movie/getAllMovie').then(res=>{
+    fetch('/Movie/getAllMovie')
+    .then(res=>{
       if(res.ok){
         return res.json()
       }
-    }).then(jsonRes => setposter(jsonRes))
+    })
+    .then(jsonRes => setposter(jsonRes))
+    .catch(e => (console.log(e)))
   },[])
 
 
-  console.log("thus sis "+img[0].poster)
+  // console.log("thus sis "+img[0].poster)
 
  
   return ( 
   <>
     {img.map((data,index)=>(
-      <div style={{ display: "inline-block" }} className="scene scene--card">
-      
+     
+      <div style={{ display: "inline-block" ,marginRight:"15px"}} className="scene scene--card">
+       {/* <p>{JSON.stringify(img[0])}</p><br></br> */}
       <div className={clicked ? "card is-flipped" : "card"} onClick={() => setClicked(!clicked)}>
 
       <div className="card__face card__face--front">

@@ -85,12 +85,13 @@ const LoginClass = () => {
         city
       };
 
-      await axios.post(
-        "http://localhost:3030/Customer/addCustomer",
+      axios.post(
+        "/Customer/addCustomer",
         registerData
-      );
-      // await getLoggedIn();
-      // history.push("/");
+
+      ).then(res => {console.log("this is res "+res)})
+      .catch(e=>{console.log("this is our e"+e)})
+   
     } catch (err) {
       console.error(err);
     }

@@ -52,6 +52,7 @@ router.get("/LogOutCustomer", CustomerController.LogOutCustomer);
 router.get("/isLoggedInc",auth.authCustomer,CustomerController.isLoggedInc);
 router.get("/getCustomerById/:id",CustomerController.getCustomerById);
 router.get("/getCustomerByName/:name",CustomerController.getCustomerByName);
+router.post("/getLoggedEndUserData",CustomerController.getLoggedEndUserData)
 
 //Route For Theater
 router.get("/getAllTheater",TheaterController.getAllTheater);

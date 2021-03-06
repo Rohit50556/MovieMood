@@ -3,6 +3,44 @@ import "../css/SeatContainer.css";
 import { useState } from "react";
 const SeatContainer = (props) => {
  
+
+  const [col , setcol] = useState([
+     {
+      _id: 1,
+      seatName: "a",
+      seatPrice: "12",
+      seatType: "hhh",
+      className: "seat"
+    },
+    {
+      _id: 2,
+      seatName: "b",
+      seatPrice: "12",
+      seatType: "hhhh",
+      className: "seat"
+    },
+    {
+      _id: 3,
+      seatName: "c",
+      seatPrice: "12",
+      seatType: "hhh",
+      className: "seat"
+    },
+    {
+      _id: 4,
+      seatName: "d",
+      seatPrice: "12",
+      seatType: "hhh",
+      className: "seat"
+    },
+    {
+      _id: 5,
+      seatName: "e",
+      seatPrice: "12",
+      seatType: "hhh",
+      className: "seat"
+    },
+  ])
   const [seats, setSeats] = useState([
     {
       _id: 1,
@@ -46,12 +84,37 @@ const SeatContainer = (props) => {
       seatType: "hhh",
       className: "seat"
     },
+    {
+      _id: 6,
+      seatName: "f",
+      seatPrice: "12",
+      seatType: "hhh",
+      className: "seat"
+    },{
+      _id: 6,
+      seatName: "f",
+      seatPrice: "12",
+      seatType: "hhh",
+      className: "seat"
+    },{
+      _id: 6,
+      seatName: "f",
+      seatPrice: "12",
+      seatType: "hhh",
+      className: "seat"
+    },{
+      _id: 6,
+      seatName: "f",
+      seatPrice: "12",
+      seatType: "hhh",
+      className: "seat occupied"
+    }
     
   ]);
 
 
 
-  const fun = (i) => {
+  const fun = (i ) => {
       const temp_seats = seats
       if(temp_seats[i].className === "seat"){
         temp_seats[i].className  = "seat occupied" 
@@ -77,17 +140,18 @@ const SeatContainer = (props) => {
 
   return (
     <div className="seat__layout">
-      
+      <div className="column">
+        {col.map((e , i) =>
       <div class="row">
-        {seats.map((obj, i) => (
+        {seats.map((obj,j ) => (
           <div
             className={obj.className}
-            onClick={() => fun(i)}
+            onClick={() => fun(j , i)}
           ></div>
 
         ))}
+      </div>)}
       </div>
-      
     </div>
   );
 };

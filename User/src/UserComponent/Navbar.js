@@ -2,18 +2,19 @@ import React from "react";
 import "../css/Navbar.css";
 import LOGO from "../Assets/image/logo.svg";
 import TextField from "@material-ui/core/TextField";
-// import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Link } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import MenuIcon from "@material-ui/icons/Menu";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import AuthContext from "../Context/AutoContext"
 
-// import React from "react";
-
+import{ useHistory} from "react-router-dom";
 const Navbar = () => {
+  const {loggedIn} =  useContext(AuthContext)
+  console.log("iniside navbar "+ loggedIn)
   const [scrolled, setScrolled] = useState(false);
   const handleScroll = () => {
     const offset = window.scrollY;
@@ -23,7 +24,7 @@ const Navbar = () => {
       setScrolled(false);
     }
   };
-
+  console.log("logged iN ? "+loggedIn)
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
   });
@@ -81,32 +82,7 @@ const Navbar = () => {
           className="scrolled"
         />
       </div>
-     ) : 
-    //   <div className={scrolled ? "nav_nav scrolled" : "nav_nav"}>
-    //     <img src={LOGO} alt="not avilable" />
-    //     <div className="nav__left">
-    //       <Link className="nav_left_link" to="/">
-    //         <p>Home</p>
-    //       </Link>
-    //       <Link className="nav_left_link" to="/history">
-    //         <p>History</p>
-    //       </Link>
-    //       <Link className="nav_left_link" to="/profile">
-    //         <p>Profile</p>
-    //       </Link>
-    //       <Link className="nav_left_link" to="/swap">
-    //         <p>Swap</p>
-    //       </Link>
-    //       <Link className="nav_left_link" to="/snacks">
-    //         <p>Snacks</p>
-    //       </Link>
-    //     </div>
-    //   </div>
-    // );
-     
-     
-     
-     
+     ) :      
      (
       <div className={scrolled ? "nav__nav scrolled" : "nav__nav"}>
         <img src={LOGO} alt="not avilable" />
@@ -125,9 +101,6 @@ const Navbar = () => {
           </Link>
           <Link className="nav_left_link" to="/swap">
             <p>Swap</p>
-          </Link>
-          <Link className="nav_left_link" to="/snacks">
-            <p>Snacks</p>
           </Link>
         </div>
       </div>
@@ -165,12 +138,27 @@ const Navbar = () => {
             }}
           />
         </div>
-        <Link className="nav_right_link" to="/login">
+       {
+         loggedIn === false? (
+
+            <Link className="nav_right_link" to="/login">
           <div className="nav__login">
             <AccountCircleIcon style={{ color: "white" }} />
             <p style={{ color: "white" }}>Login/Register</p>
           </div>
         </Link>
+         ):(
+   
+           
+           <Link className="nav_right_link" to="/login">
+          <div className="nav__login">
+            <AccountCircleIcon style={{ color: "white" }} />
+            <p style={{ color: "white" }}><button onClick={()=>{localStorage.clear()
+            useHistory.push("/login")}}>Logout</button></p>
+          </div>  
+        </Link>
+         )
+       }
       </div>
     );
 
@@ -256,7 +244,31 @@ const Navbar = () => {
           onClose={() => st2(false)}
           onOpen={() => st2(true)}
         >
-          <div className="nav__right">
+      
+         {
+         loggedIn? (
+             <div className="nav__right">
+            <Link className="nav_right_link" to="/login">
+              <div className="nav__login">
+                <AccountCircleIcon
+                  style={{
+                    marginTop: "10px",
+                    marginLeft:"50px"
+                  }}
+                />
+                <p
+                  style={{
+                    color: "black",
+                       marginLeft:"50px"
+                  }}
+                >
+             Logout
+                </p>
+              </div>
+            </Link>
+          </div>
+         ):(
+           <div className="nav__right">
             <Link className="nav_right_link" to="/login">
               <div className="nav__login">
                 <AccountCircleIcon
@@ -274,6 +286,9 @@ const Navbar = () => {
               </div>
             </Link>
           </div>
+         )
+       }
+         
         </SwipeableDrawer>
       </nav>
       {/* </header> */}

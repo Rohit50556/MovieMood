@@ -19,15 +19,17 @@ module.exports.addCustomer = async(req,res)=>{
     customer.username=req.body.username;
     customer.password=req.body.password;
     customer.email=req.body.email;
-    customer.mobile=req.body.mobile;
-    customer.image=req.body.image;
+    // customer.mobile=req.body.mobile;
+    // customer.image=req.body.image;
     customer.gender=req.body.gender;
     customer.address=req.body.address;
-    customer.wallet= req.body.wallet;
-
+    // customer.wallet= req.body.wallet;
+      // console.log("hale che")
     if(!customer.email || !customer.password)
     {
+    
         return res.status(400).json({ errorMessage: "Please enter all required fields." });
+
     }
     const existingUser = await Customer.findOne({ email:(customer.email) });
     if (existingUser){
@@ -83,7 +85,7 @@ module.exports.LoginCustomer = async (req, res)=>{
           // send the token in a HTTP-only cookie
             console.log("ME inside Login customer");
           // res.cookie("token", token).send();
-          res.send(token);
+          res.send({token , existingUser});
     }catch(err){
         
         console.error(err);
@@ -111,9 +113,10 @@ module.exports.LogOutCustomer = async (req,res)=>{
 };
 
 module.exports.isLoggedInc=(req,res)=>{
+    // console.log("pochyu loogedn inc")
   try {
     const token = req.token;
-    // console.log(req.token);
+    console.log(req.token);
     // console.log(req.user);
     if (!token){
       return res.json(false);
@@ -139,3 +142,14 @@ module.exports.getCustomerByName = async(req,res)=>{
 
 
 };
+
+module.exports.getLoggedEndUserData = async (req,res) => {
+  try {
+    const user = await Customer.findOne({email: req.body.email})
+    const isMatched = await bcrypt.compare(req.body.password, user.password)
+    if(!isMatched) return res.send("Invalid request").status(404)
+    res.status(200).send(user)
+  } catch(err) {
+    res.status(404).send(err)
+  }
+}

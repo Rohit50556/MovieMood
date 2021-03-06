@@ -10,12 +10,14 @@ import SeatBookContainer from "./UserComponent/SeatBookContainer";
 import SnackContainer from "./UserComponent/SnackContainer";
 import Profile from "./UserComponent/Profile";
 import History from "./UserComponent/History"
+import {AuthContextProvider} from "../src/Context/AutoContext"
 
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
 function App() {
   return (
+    <AuthContextProvider>
     <Router>
       <div className="app__div">
         <Navbar />
@@ -32,18 +34,9 @@ function App() {
           <Route path="/profile" exact component={Profile}/>
           <Route path="/history" exact component={History} />
         </Switch>
-        {/* <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/adjust" exact component={Adjust} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/register" exact component={Register} />
-          <Route path="/moviedetail" exact component={MovieDetail} />
-          <Route path="/castdetailpage" exact component={CastDetailPage} />
-
-        </Switch> */}
-
       </div>
     </Router>
+    </AuthContextProvider>
   );
 }
 

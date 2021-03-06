@@ -1,29 +1,60 @@
-import React ,{ useState } from "react";
+import React ,{ useContext, useState } from "react";
 import "./css/Login.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { Button, Form, Card, Navbar } from "react-bootstrap";
+import { Button, Form, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import axios from "axios";
+import AuthContext from "../src/Context/AutoContext"
+import {useHistory} from "react-router-dom"
 axios.defaults.withCredentials=true;
-class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { isLoginopen: true, isRegisteropen: false };
-  }
+var userlogged;
+  const Login  =() => 
+  {
+    const {loggedIn , setLoggedIn} =  useContext(AuthContext);
 
-  showRegister() {
-    this.setState({ isLoginopen: false, isRegisteropen: true });
-  }
+    let history = useHistory();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    async function loginc(e){
+      e.preventDefault();
+      try 
+      {
+        const loginData = {
+          email,
+          password
+        };
 
-  showLogin() {
-    this.setState({ isLoginopen: true, isRegisteropen: false });
-  }
+        await axios.post(
+          "/Customer/LoginCustomer",
+          loginData
+        ).then((res)=>{
+          localStorage.setItem("token",res.data.token);
+          //  setLoggedIn(true)
+          localStorage.setItem("loggedUser" , res.data.existingUser.email)
+              history.push("/")
+              userlogged = (localStorage.getItem("loggedUser"))
+console.log(localStorage.getItem("loggedUser"))
+          
+          // console.log(res.data)
+        }).catch(error=>{
+          console.log(error);
+        });
 
-  render() {
+          
+          
+              
+        
+        // const user = await axios.post("/Customer/getLoggedEndUserData", loginData)
+        // console.log(user.data)
+      } 
+      catch (err) {
+        console.error(err);
+      }
+    }
 
 
-    return (
+return (
       <div className="img2">
         <div className="size">
           <div className="root-container">
@@ -39,57 +70,15 @@ class Login extends React.Component {
                   <ul className="nav nav-tabs card-header-tabs">
                     <div style={{ marginLeft: "50px" }}></div>
                     <li className="nav-item style">
-                      <Navbar.Toggle onClick={this.showLogin.bind(this)}>
+                    
                         User Login
-                      </Navbar.Toggle>
+                      
                     </li>
                   </ul>
                 </Card.Header>
 
                 <div className="box-container">
-                  {this.state.isLoginopen && <LoginClass />}
-                </div>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
-
-const LoginClass = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [logged,setLogged]=useState(false);
-
-  async function loginc(e){
-    e.preventDefault();
-    try {
-      const loginData = {
-        email,
-        password
-      };
-
-      await axios.post("http://localhost:3030/Customer/LoginCustomer",loginData).then(res=>{
-          localStorage.setItem("token",res.data);
-      });
-
-
-      if(localStorage.getItem("token"))
-      {
-        setLogged(true);
-        console.log(logged)
-      }
-
-      
-
-    } catch (err) {
-      console.error(err);
-    }
-  }
-    return (
-      <div>
+                   <div>
         <Form
           style={{
             marginLeft: "30px",
@@ -108,7 +97,7 @@ const LoginClass = () => {
               onChange={(e) => setEmail(e.target.value)}
               value={email}
               required
-            />
+            />  
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
@@ -128,6 +117,7 @@ const LoginClass = () => {
             variant="success"
             type="submit"
             style={{ marginLeft: "30px" }}
+            onClick={loginc}
           >
             Login
           </Button>
@@ -142,21 +132,15 @@ const LoginClass = () => {
           </Link>
         </Form>
       </div>
+                </div>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </div>
     );
-
-};
+}
 
 export default Login;
 
-
-// axios.post(url,data, {
-//   headers: {
-//       'Authorization': localStorage.getItem("token") }
-// })
-// .then(response => {
-//   // return  response;
-// })
-// .catch((error) => {
-//   //return  error;
-// });
 

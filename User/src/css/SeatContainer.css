@@ -34,7 +34,11 @@
 .row {
   display: flex;
 }
+.column{
+  display: flex;
+  flex-direction: column;
+}
 .seat__layout {
-  margin-left: 33%;
+  margin-left: 38%;
   margin-top: 30px;
 }
