@@ -4,7 +4,7 @@
 }
 .section1{
     height:100vh;
-    background-image: url(D:\project\react_project\MovieMood\admin\src\Assets\Untitled.jpg);
+    background-image: url(D:\project\react_project\MovieMood\admin\src\Assets\red-theater-chairs.jpg);
     background-attachment: fixed;
     background-size: cover;
 }
@@ -15,7 +15,7 @@
 }
 .sectiontag{
     height:100vh;
-    background-image: url(D:\project\react_project\MovieMood\admin\src\Assets\img.jpg);
+    background-image: url(D:\project\react_project\MovieMood\admin\src\Assets\img2.jpg);
     background-attachment: fixed;
     background-size: cover;
 }

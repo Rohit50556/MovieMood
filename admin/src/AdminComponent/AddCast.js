@@ -69,7 +69,7 @@ const AddCast=() =>{
             <Form.Row>
                <Form.Group>
                     <Form.Label>Cast Description</Form.Label>
-                    <textarea class="form-control"  onChange={handleChange} value={data.info} name="info" style={{width:'500px'}}rows="3"></textarea>
+                    <textarea class="form-control"  onChange={handleChange} value={data.info} name="info" placeholder="Cast Description" style={{width:'500px'}}rows="3"></textarea>
                 </Form.Group>
             </Form.Row>
             <Form.Row>

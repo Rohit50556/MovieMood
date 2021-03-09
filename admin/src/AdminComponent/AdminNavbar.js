@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { SidebarData } from './SidebarData';
 import '../css/AdminNavbar.css';
 import { IconContext } from 'react-icons';
-import { GiTicket } from "react-icons/gi";
+//import { GiTicket } from "react-icons/gi";
 
 function AdminNavbar() {
   const [sidebar, setSidebar] = useState(false);
@@ -22,10 +22,9 @@ function AdminNavbar() {
             
           </Link>
           
-          
-          <a href='/' style={{textDecoration:'none  '}}>
-          <h1 style={{color:'red',display: 'inline-block',fontSize:'50px'}}>Movie </h1><GiTicket style={{marginTop:'-20px',marginLeft:'10px'}} size="60px" />
-          <h1 style={{color:'blue',display: 'inline-block',fontSize:'50px'}}> Mood</h1></a>
+          <a href='/' style={{position:'fixed',marginLeft:'700px',color:'white',textDecoration:'none  '}}><h1>Admin</h1></a>
+          {/* <h1 style={{color:'red',display: 'inline-block',fontSize:'50px'}}>Movie </h1><GiTicket style={{marginTop:'-20px',marginLeft:'10px'}} size="60px" />
+          <h1 style={{color:'blue',display: 'inline-block',fontSize:'50px'}}> Mood</h1></a>  */}
         </div>
         <nav  className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items' onClick={showSidebar}>

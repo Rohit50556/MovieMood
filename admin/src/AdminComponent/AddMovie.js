@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import {Multiselect} from 'multiselect-react-dropdown';
+import {useHistory} from 'react-router-dom'
 import {Button,Form,Col} from "react-bootstrap";
 import "../css/AddMovie.css"
 import axios from 'axios';
@@ -12,6 +13,7 @@ function adddata(Cast,id){
 
 const AddMovie = () =>{
 
+  let history=useHistory();
 const [castdetails,setCast]=useState([])
   useEffect(()=>{
     fetch('/Cast/getAllCast').then(res=>{
@@ -21,6 +23,7 @@ const [castdetails,setCast]=useState([])
     else{
       console.log("err")
     }
+    
     }).then(jsonRes => setCast(jsonRes))
   },[])
 
@@ -193,6 +196,7 @@ function handleClick(event){
   })
 
  axios.post('http://localhost:3030/Movie/addMovie',formdata,{}).then((res)=>{})
+ history.push('/')
 // axios.post('http://localhost:3030/Movie/addMovie',Array,{}).then((res)=>{})
   
   }
@@ -233,23 +237,18 @@ return(<>
       </Form.Group>
     */}
     <Form.Row>
-    <Form.Group as={Col}>
-         <Form.Label>Movie Description</Form.Label>
-         <Form.Control  type="text" onChange={handleChange} value={input.movieinfo} name="movieinfo" placeholder="Enter Movie Description" />
-      
-      </Form.Group>
       
     <Form.Group as={Col} >
          <Form.Label>Movie Trailer Url</Form.Label>
          <Form.Control  type="text"  onChange={handleChange} value={input.url} name="url" placeholder="Movie Trailer Url" />
       </Form.Group>
     
-        </Form.Row>
-        <Form.Group  >
+      <Form.Group as={Col}  >
             <Form.Label>Language</Form.Label>
             <Multiselect options={languageoptions}  displayValue="Language" onRemove={handleLanguageRemove} onSelect={handleLanguage}  />
         </Form.Group>
         
+        </Form.Row>
     
       <Form.Group >
         <Form.Label>Genres</Form.Label>
@@ -261,6 +260,12 @@ return(<>
         <Form.Label>Cast</Form.Label>
         <Multiselect options={castptions} displayValue="Cast" onSelect={handleCast} onRemove={handleCastRemove}  />
     </Form.Group>
+    
+    <Form.Group >
+         <Form.Label>Movie Description</Form.Label>
+         {/* <Form.Control  type="textarea" onChange={handleChange} value={input.movieinfo} name="movieinfo" placeholder="Enter Movie Description" /> */}
+         <textarea class="form-control"  onChange={handleChange} value={input.movieinfo} name="movieinfo" placeholder="Enter Movie Description" style={{width:'500px'}} rows="3" />
+      </Form.Group>
 
 <Form.Row as={Col}>
       <Form.Group  >
