@@ -1,0 +1,59 @@
+/* .size{
+    margin-top: 100px;
+    margin-left: 900px;
+
+}
+.img{
+    text-align: center;
+    background-image: url("D:\project\react_project\logindemo\src\Assets\red-theater-chairs.jpg");
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    background-size: cover;
+    background-position: center;
+    
+} */
+
+.size {
+    margin-bottom: 10%;
+    /* margin-right: 15%; */
+    margin-left: 50%;
+  }
+  
+  .style:hover {
+    font-style: italic;
+    background-color: #e57373;
+    border-radius: 10vh;
+  }
+  .style:hover:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  .img {
+    margin-top: -600px;
+    text-align: center;
+    /* background-image: url("D:\project\react_project\MovieMood\theater\src\Assets\image\chairs.jpg"); */
+    }
+
+  .style:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    display: flex;
+    height: 1em;
+    width: 100%;
+    border-bottom: 3px solid;
+    margin-top: 10px;
+    opacity: 0;
+    -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
+    transition: opacity 0.5s, transform 0.5s;
+    -webkit-transform: scale(0, 1);
+    transform: scale(0, 1);
+  }
+  @media (max-width: 800px) {
+    .size {
+      margin: 25%;
+    }
+  }
+  

@@ -1,0 +1,31 @@
+.cast__detail {
+  height: 195px;
+  width: 120px;
+  /* border: 1px solid black; */
+  display: inline-block;
+  margin: 27px;
+  cursor: pointer;
+}
+.cast__image {
+  height: 120px;
+  width: 120px;
+  /* border: 1px solid black; */
+}
+.cast__image > img {
+  object-fit: fill;
+  height: 120px;
+  width: 120px;
+  border-radius: 60px;
+}
+.name {
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  word-spacing: 0px;
+}
+.role {
+  font-size: 14px;
+  line-height: 20.02px;
+  text-align: center;
+  word-spacing: 0px;
+}
