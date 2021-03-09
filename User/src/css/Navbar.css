@@ -1,0 +1,143 @@
+.nav__nav {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  background-color: rgb(187, 76, 76);
+  z-index: 1;
+}
+.nav__left {
+  display: flex;
+  align-items: center;
+  /* margin-left: 15px; */
+  overflow: hidden;
+  z-index: 1;
+}
+.nav_left_link > p {
+  margin-left: 10px;
+  margin-right: 15px;
+  margin-top: auto;
+  padding: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+  color: white;
+}
+.nav_left_link > p:hover {
+  box-shadow: 2px 2px 10px gray;
+  font-style: italic;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  background-color: blue;
+  border-radius: 5px;
+  color: white;
+}
+.nav__right {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 15px;
+  z-index: 1;
+  
+}
+.nav_right_link > p {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.nav__nav > img {
+  height: 90px;
+  width: 90px;
+  margin-left: 40px;
+  margin-top: 10px;
+  /* border: 1px solid black; */
+  /* border-radius: 100px; */
+}
+.nav__middel {
+  transition: all 1s ease;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+}
+.nav__login {
+  margin-top: 20px;
+  /* margin-bottom: 5px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav__login > p {
+  font-size: 13px;
+}
+.nav__searchicon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+@media (max-width: 890px) {
+  .nav__left > img {
+    object-fit: contain;
+    height: 70px;
+    padding-left: 10px;
+    padding-right: 15px;
+    align-items: center;
+    margin-left: 10px;
+  }
+
+  .nav__left {
+    margin-top: 250px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 700px) {
+  .nav__right {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* margin-left: 30px; */
+    margin-right: 50px;
+
+  }
+  .nav__login > p {
+    font-size: 15px;
+  }
+  .nav__searchicon {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    align-items: center;
+  }
+}
+.scrolled {
+  position: fixed;
+  transition: all 1s ease;
+  top: 0;
+  left: 0;
+  background-color: #42a5f5;
+  width: 720px;
+  overflow: hidden;
+}
+.scrolled__right {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 50px;
+  background-color: #42a5f5;
+  transition: all 1s ease;
+  overflow: hidden;
+}
+.scrolled__middel {
+  position: fixed;
+  top: 0;
+  transition: all 1s ease;
+
+  margin-left: 45%;
+  height: 50px;
+  width: 570px;
+  background-color: #42a5f5;
+  /* border-radius: 15px; */
+  overflow: hidden;
+}

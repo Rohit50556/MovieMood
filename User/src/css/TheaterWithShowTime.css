@@ -1,0 +1,43 @@
+.cinema__show {
+  height: 100px;
+  width: 100%;
+  /* border: 1px solid black; */
+  display: flex;
+  align-items: center;
+}
+.cinema__show:hover {
+  background-color: #f1eded;
+}
+.ul__shows {
+  margin-left: 10%;
+}
+h5 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 0;
+  margin-top: 20px;
+}
+p {
+  font-size: 15px;
+  display: block;
+}
+p:hover {
+  color: black;
+}
+
+li {
+  display: inline;
+  margin-right: 25px;
+  font-size: 18px;
+  font-weight: 600;
+  color: green;
+}
+li:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+hr {
+  width: 100%;
+  margin: 0;
+}
