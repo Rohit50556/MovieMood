@@ -47,7 +47,7 @@ const Card = () => {
             <h6>Geners :-{img[index].genre}</h6>
             <h6>language :- {img[index].language}</h6>
             <Link to="moviedetail">
-            <button className="btn btn-primary book__button"  onClick={(e)=>{ localStorage.setItem("movieName",img[index].movieName)}}>Book Now</button>
+            <button className="btn btn-primary book__button"  onClick={(e)=>{ localStorage.setItem("movieName",img[index].moviename)}}>Book Now</button>
             </Link>
           </div>
         </div>

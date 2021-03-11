@@ -1,4 +1,4 @@
-import React ,{ useContext, useState } from "react";
+import React ,{ useContext, useState,useEffect } from "react";
 import "./css/Login.css"
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Button, Form, Card } from "react-bootstrap";
@@ -11,6 +11,18 @@ axios.defaults.withCredentials=true;
 var userlogged;
   const Login  =() => 
   {
+    var [Data,setData]=useState("")
+
+    useEffect(()=>{
+      if(localStorage.getItem("temp")===null)
+      { 
+         localStorage.setItem("temp","pqr")
+          setData("xyz")
+          window.location.reload()
+      }
+
+    },[Data])
+
     const {loggedIn , setLoggedIn} =  useContext(AuthContext);
 
     let history = useHistory();
@@ -32,12 +44,13 @@ var userlogged;
           localStorage.setItem("token",res.data.token);
           //  setLoggedIn(true)
           localStorage.setItem("loggedUser" , res.data.existingUser.email)
+          localStorage.setItem("city" , res.data.existingUser.city)
               history.push("/")
               userlogged = (localStorage.getItem("loggedUser"))
           console.log(localStorage.getItem("loggedUser"))
           
 
-
+          window.location.reload();
           // console.log(res.data)
         }).catch(error=>{
           console.log(error);

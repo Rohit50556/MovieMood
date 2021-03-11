@@ -2,7 +2,7 @@
   "name": "sdp",
   "version": "0.1.0",
   "private": true,
-  "proxy":"http://localhost:3030/",
+  "proxy": "http://localhost:3030/",
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
@@ -12,6 +12,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "bootstrapt": "^1.2.0",
+    "multiselect-react-dropdown": "^1.6.11",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.1",
     "react-datepicker": "^3.6.0",
@@ -21,6 +22,7 @@
     "react-scripts": "4.0.3",
     "react-slick": "^0.28.0",
     "slick-carousel": "^1.8.1",
+    "validator": "^13.5.2",
     "web-vitals": "^1.1.0"
   },
   "scripts": {

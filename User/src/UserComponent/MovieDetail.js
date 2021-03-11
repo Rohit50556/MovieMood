@@ -11,11 +11,33 @@ import Castcard from "../UserComponent/Castcard";
 import { Link } from "react-router-dom";
 import TheaterWithShowTimeContainer from "../UserComponent/TheaterWithShowTimeContainer";
 import Footer from "../UserComponent/Footer";
+import {Multiselect} from 'multiselect-react-dropdown';
+
+var dates=[]
+function addDate(date,id){
+  return {date,id}
+}
 const MovieDetail = () => {
-  const movieName = "xyz";
+  const [casts,setCasts]=useState([]);
+
+    while(dates.length > 0) {
+      dates.pop();
+    }
+   
+    var currentDate=new Date();
+    var day = currentDate.getDate()
+    var month = currentDate.getMonth() + 1
+    var year = currentDate.getFullYear()
+    dates.push(addDate(day+"/"+month+"/"+year,1))
+    dates.push(addDate((day+1)+"/"+month+"/"+year,2))
+    dates.push(addDate((day+2)+"/"+month+"/"+year,3))
+    
+    const [datelist]=useState(dates);
+      
+  const movieName = localStorage.getItem("movieName");
   const [movie,setMovie]=useState([{}]);
   
-  const [startDate, setStartDate] = useState(new Date());
+//  const [startDate, setStartDate] = useState(new Date());
 
   const useStyles = makeStyles((theme) => ({
     backdrop: {
@@ -38,14 +60,34 @@ const MovieDetail = () => {
     .then(res=>{
       if(res.ok){
         return res.json()
-        //        console.log(res.json())
       }
     })
-    .then(jsonRes => setMovie(jsonRes))
+    .then(jsonRes => {setMovie(jsonRes);setCasts(jsonRes[0].cast)})
     .catch(e => {console.log(e);});
   },[]);
+
+  console.log("=="+movie[0])
+
+  var c =[];
+  for(let i=0;i<casts.length;i++)
+  {
+    c.push(
+        <Castcard name={casts[i]} />
+    );
+  }
 //  console.log("=="+movie[0].moviename)
-  
+function handleDateRemove(item,event)
+{
+  localStorage.setItem('date',"")
+}
+function handleDate(item,event)
+{
+    localStorage.setItem('date',event.date)
+    if(localStorage.getItem("UserCity")!="")
+      localStorage.setItem('finalcity',localStorage.getItem("UserCity")) 
+    window.location.reload();
+  }
+
   return (
      <div className="main__div">
       <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
@@ -217,42 +259,18 @@ const MovieDetail = () => {
       <hr className="hrstyle" />
       <div className="cast__div">
         <h4>Cast</h4>
-        <Link to="castdetailpage">
-          <Castcard />
-        </Link>
-        <Link to="castdetailpage">
-          <Castcard />
-        </Link>
-        <Link to="castdetailpage">
-          <Castcard />
-        </Link>
-        <Link to="castdetailpage">
-          <Castcard />
-        </Link>
-        <Link to="castdetailpage">
-          <Castcard />
-        </Link>
-        <Link to="castdetailpage">
-          <Castcard />
-        </Link>
-        <Link to="castdetailpage">
-          <Castcard />
-        </Link>
+        {c}
       </div>
       <hr className="hrstyle" />
       <div className="date__class">
-        <span>Please select your Date : </span>
-        <DatePicker
-          // withPortal
-          showMonthDropdown
-          useShortMonthInDropdown
-          showYearDropdown
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-          calendarClassName="rasta-stripes"
-        />
+       
+        Selected Date: {localStorage.getItem('date')}
+      
+        <div style={{marginLeft:'100px',marginRight:'200px'}}>
+        <Multiselect   options={datelist}  displayValue="date" placeholder="Date"  onRemove={handleDateRemove} onSelect={handleDate}/>     
+        </div>
       </div>
-      <TheaterWithShowTimeContainer />
+      <TheaterWithShowTimeContainer /> 
       <Footer />
     </div>
   );

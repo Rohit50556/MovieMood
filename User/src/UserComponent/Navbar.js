@@ -10,7 +10,8 @@ import { useEffect, useRef, useState, useContext } from "react";
 import MenuIcon from "@material-ui/icons/Menu";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import AuthContext from "../Context/AutoContext"
-
+import Select from "@material-ui/core/Select";
+//import Value from "@material-ui/core/Value";
 
 import{ useHistory} from "react-router-dom";
 const Navbar = () => {
@@ -34,24 +35,27 @@ const Navbar = () => {
     navbarClasses.push("scrolled");
   }
 
-  const currencies = [
-    {
-      value: "USD",
-      label: "$",
-    },
-    {
-      value: "EUR",
-      label: "€",
-    },
-    {
-      value: "BTC",
-      label: "฿",
-    },
-    {
-      value: "JPY",
-      label: "¥",
-    },
+  // const currencies = [
+  //   {
+  //     value:localStorage.getItem("city"),
+  //     label:localStorage.getItem("city"),
+
+  //   },
+  //   {
+  //     value:"Mehsana",
+  //     label:"Mehsana",
+  //   }  
+  // ];
+  const followers = [
+    { "Ahmedabad" : "Ahmedabad"},
+    {"Surat": "Surat"},
+    { "nadiad": "nadiad"},
+    { "Mehsana": "Mehsana" },
   ];
+  const [value, setValue] = useState("");
+   const handleChange = event => setValue(event.target.value);
+   
+   localStorage.setItem("UserCity", value)
   const myRef = useRef();
   const [width, setWidth] = useState(900);
   useEffect(() => {
@@ -162,6 +166,10 @@ const Navbar = () => {
        }
       </div>
     );
+    // function handleChange(e){
+    //   var city=e.target.
+    //   alert(city)
+    // }
 
   return (
     <div>
@@ -217,7 +225,31 @@ const Navbar = () => {
         <div
           className={scrolled ? "nav__middel scrolled__middel " : "nav__middel"}
         >
-          <TextField
+         
+         <div style={{display:"flex" , alignItems:"center" , marginBottom:"15px" , marginTop:"15px" ,marginLeft:"30%" }}>
+            <p style={{ fontSize:"20px", fontWeight:"500px", marginRight:"5px", color:"green" , marginBottom:"8px", marginLeft:"10%"}}>Select City :</p>
+          <Select
+            style={{width:"150px", color:"blue"}}
+            margin="dense"
+            displayEmpty
+            onChange={handleChange}
+            value={value}
+            variant="outlined"
+
+        >
+          {followers.map(element => (
+            <MenuItem
+              value={element[Object.keys(element)] + ""}
+              key={Object.keys(element)[0]}
+            >
+              {Object.keys(element)[0]}
+            </MenuItem>
+          ))}
+          
+        </Select>
+         </div>
+        
+          {/* <TextField
             id="filled-select-currency"
             select
             label="City Name"
@@ -232,11 +264,11 @@ const Navbar = () => {
             variant="filled"
           >
             {currencies.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
+              <MenuItem key={option.value} value={option.value} selected="true" onChange={(e)=>handleChange(e)}>
                 {option.label}
               </MenuItem>
             ))}
-          </TextField>
+          </TextField> */}
         </div>
         {navRight}
         <SwipeableDrawer

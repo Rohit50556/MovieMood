@@ -10,6 +10,10 @@ import SeatBookContainer from "./UserComponent/SeatBookContainer";
 import SnackContainer from "./UserComponent/SnackContainer";
 import Profile from "./UserComponent/Profile";
 import History from "./UserComponent/History"
+
+import Booked from "./UserComponent/Booked";
+import BookingPage from "./UserComponent/BookingPage";
+
 import {AuthContextProvider} from "../src/Context/AutoContext"
 
 import axios from 'axios';
@@ -33,6 +37,8 @@ function App() {
           <Route path="/snackcontainer/" exact component={SnackContainer} />
           <Route path="/profile" exact component={Profile}/>
           <Route path="/history" exact component={History} />
+          <Route path="/bookingpage" exact component={BookingPage}/>
+          <Route path="/booked" exact component={Booked}/>
         </Switch>
       </div>
     </Router>

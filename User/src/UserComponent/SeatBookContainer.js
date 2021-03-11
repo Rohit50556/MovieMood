@@ -5,7 +5,6 @@ import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import {Link} from "react-router-dom"
 
 
-
 const SeatBookContainer = () => {
   const [selectedSeats,setSelectedSeats] = useState([])
   const [totalPrice , setTotalprice] = useState(0)
@@ -53,7 +52,7 @@ const SeatBookContainer = () => {
           <SeatContainer forceRender={forceRender} setSelectedSeats={setSelectedSeats} selectedSeats={selectedSeats} />
         </div>
         <div className="verticleLine"></div>
-        <div className="realtime__simulation__total">
+        <div className="realtime_simulation_total">
           <h1 style={{color:"black", textAlign:"center" , marginTop:"10%", textDecoration:"underline"}}>Booking Details</h1>
           <h5 style={{color:"black", textAlign:"center", marginBottom:"10px"}}>You Have Selected this below Seats</h5>
 
@@ -63,7 +62,11 @@ const SeatBookContainer = () => {
           
           <p className="count__p">Total Selected seat is  : {selectedSeats.length}</p>
             <p className="count__p">Total Price is  : {totalPrice}</p>
-            <Link to={selectedSeats.length === 0?"seatBookContainer":"snackcontainer"}>  <button onClick={visibleHandler} className="button__Book">Countinue</button></Link>
+            <Link to={{
+              pathname: selectedSeats.length === 0?"seatBookContainer":"snackcontainer",
+              seatPrice : {totalPrice},
+            seatArray : {selectedSeats} 
+            }}>  <button onClick={visibleHandler} className="button__Book">Countinue</button></Link>
     
             <Link to="moviedetail"> <button  className="button__Cancel">Cancel</button></Link>
            {visible?<h1 style={{color:"red"}}>

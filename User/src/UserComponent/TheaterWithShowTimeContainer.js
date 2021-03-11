@@ -2,7 +2,9 @@ import React from "react";
 import "../css/TheaterWithShowTimeContainer.css";
 import TheaterWithShowTime from "../UserComponent/TheaterWithShowTime";
 const TheaterWithShowTimeContainer = () => {
-  return (
+  // let date=localStorage.getItem('date')
+ 
+ return (
     <div>
       <h4
         style={{
@@ -14,12 +16,6 @@ const TheaterWithShowTimeContainer = () => {
         Available Show Timings and Cinema in Your City :
       </h4>
       <div className="container__cinema">
-        <TheaterWithShowTime />
-        <TheaterWithShowTime />
-        <TheaterWithShowTime />
-        <TheaterWithShowTime />
-        <TheaterWithShowTime />
-        
         <TheaterWithShowTime />
       </div>
     </div>
