@@ -86,7 +86,7 @@ const TimeTable = () =>{
       var year = currentDate.getFullYear()
       dates.push(addDate(day+"/"+month+"/"+year,1))
       dates.push(addDate((day+1)+"/"+month+"/"+year,2))
-      dates.push(addDate((day+2)+"/"+month+"/"+year,2))
+      dates.push(addDate((day+2)+"/"+month+"/"+year,3))
       
       const [datelist]=useState(dates);
        
