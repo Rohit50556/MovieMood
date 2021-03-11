@@ -32,6 +32,10 @@ const showSchema = new mongoose.Schema({
     city: {
         type: String,
         trim: true
+    },
+    seatArray :{
+        type : [Object],
+        trim:true
     }
 });
 

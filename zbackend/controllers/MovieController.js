@@ -67,6 +67,7 @@ module.exports.deleteMovieByName = async(req, res) => {
 
 module.exports.getMovieByName = async(req, res) => {
   console.log("="+req.params.name)
+  
     await Movie.find({ moviename: req.params.name })
         .then((m) => (res.send(m)))
         .catch((err) => (console.log(err)));

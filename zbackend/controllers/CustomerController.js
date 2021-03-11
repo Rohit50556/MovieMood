@@ -19,8 +19,7 @@ module.exports.addCustomer = async(req,res)=>{
     customer.username=req.body.username;
     customer.password=req.body.password;
     customer.email=req.body.email;
-    // customer.mobile=req.body.mobile;
-    // customer.image=req.body.image;
+    customer.city=req.body.city;
     customer.gender=req.body.gender;
     customer.address=req.body.address;
     // customer.wallet= req.body.wallet;

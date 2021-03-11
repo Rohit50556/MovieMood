@@ -23,6 +23,20 @@ module.exports.addShowTiming= async (req,res)=>{
     showTiming.theaterName = "xyz";
     showTiming.city= "xyz";
 
+
+    var seatArray = []
+    for(var k=0;k<60;k++)
+    {
+        seatArray.push({
+            "seatName":k+1,
+            "seatPrice": req.body.price ,
+            "seatType":"Delux",
+            "className":"seat"
+         });
+    }
+    showTiming.seatArray=seatArray;
+        console.log(seatArray)
+
     await showTiming.save()
                 .then((m)=>{res.send(m);})
                 .catch((err)=>{console.log(err);});
@@ -34,16 +48,30 @@ module.exports.addShowTiming= async (req,res)=>{
 
 module.exports.getShow = async(req, res) => {
 
-    //console.log("="+req.body)
-    
-    ShowTiming.find({ screen:req.body.scr,ShowDate:req.body.date})
+    console.log("hello="+req.body)
+    ShowTiming.find({ movieName:req.body.name,ShowDate:req.body.date})
         .then((data) => { res.send(data) })
         .catch((e) => { console.log(e) });
 };
 
 
-// module.exports.findShow = async(req, res) => {
-//     ShowTiming.find({ movieName:req.params.name, city: req.params.city, ShowDate: req.params.date })
-//         .then((data) => { res.send(data) })
-//         .catch((e) => { console.log(e) });
-// };
+module.exports.getShow = async(req, res) => {
+    console.log("hello="+JSON.stringify(req.params)) 
+    var date=req.params.day+"/"+req.params.month+"/"+req.params.year;
+    console.log(req.params)
+    ShowTiming.find({movieName:req.params.name,ShowDate:date,city:req.params.city })
+        .then((data) => { res.send(data) })
+        .catch((e) => { console.log(e) });
+};
+
+module.exports.getShowById = async(req, res) => {
+
+    console.log("this is req "+req.params.id)
+    
+   //  ShowTiming.findById(req.params.id)
+   //      .then((data) => { res.send(data); })
+   //      .catch((e) => { console.log(e); });
+
+   const data = await ShowTiming.findById(req.params.id)
+   res.send(data)
+};

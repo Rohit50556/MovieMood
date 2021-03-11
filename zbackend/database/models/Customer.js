@@ -43,6 +43,10 @@ const customerSchema = mongoose.Schema({
     wallet: {
         type: Number,
         trim: true
+    },
+    city: {
+        type: String,
+        trim: true
     }
 });
 

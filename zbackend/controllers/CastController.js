@@ -24,7 +24,14 @@ module.exports.getAllCast = async(req,res)=>{
         .catch((err)=>{console.log(err)});
 };
 
-
+module.exports.getCastByName=async(req,res)=>{
+  console.log("I am Here.....");
+  await Cast.find({castName:req.params.name})
+          .then((m)=>{res.send(m);
+              console.log(m);
+          })
+          .catch((err)=>{console.log(err);});
+};
 
 
 module.exports.addCast = async(req,res)=>{

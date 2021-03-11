@@ -81,7 +81,7 @@ router.get("/getAllCast",CastController.getAllCast);
 
 
 router.post("/addCast",CastController.addCast);
-
+router.get("/getCastByName/:name",CastController.getCastByName);
 
 router.get("/getAllCustomer",CustomerController.getAllCustomer);
 router.post("/addCustomer",CustomerController.addCustomer);
@@ -125,6 +125,9 @@ router.post("/addSeat",SeatController.addSeat);
 router.get("/getAllShowTiming",ShowTimingController.getAllShowTiming);
 router.post("/getShow",ShowTimingController.getShow);
 router.post("/addShowTiming",ShowTimingController.addShowTiming);
+router.get("/getShow/:city/:name/:day/:month/:year", ShowTimingController.getShow);
+router.get("/getShowById/:id",ShowTimingController.getShowById);
+
 // router.get("/findshow/:name/:city/:date", ShowController.findshow);
 
 //Routes For SnacksOrder
