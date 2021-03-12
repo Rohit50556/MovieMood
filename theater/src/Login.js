@@ -39,8 +39,13 @@ import {useHistory} from "react-router-dom"
           loginData
         ).then((res)=>{
           localStorage.setItem("token",res.data.token);
-          localStorage.setItem("loggedUser" ,res.data.existingUser.theaterEmail)
+          //localStorage.setItem("loggedUser" ,res.data.existingUser.theaterEmail)
+          localStorage.setItem("theaterName" ,res.data.existingUser.theaterName)
+          localStorage.setItem("city" ,res.data.existingUser.city)
+          localStorage.setItem("address" ,res.data.existingUser.theaterAddress)
+          localStorage.setItem("scr" ,res.data.existingUser.noOfScreen)
           localStorage.setItem("theaterId" ,res.data.existingUser._id)
+
           
           history.push("/")
           window.location.reload();

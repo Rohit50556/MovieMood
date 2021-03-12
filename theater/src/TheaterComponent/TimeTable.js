@@ -15,7 +15,7 @@ var times=[]
 var movies=[]
 var arr=[]
 
-var sno=4
+var sno=0
 var scr=""
 var movie=""
 var date=""
@@ -44,6 +44,7 @@ const TimeTable = () =>{
       history.push('/Login')
    }
 
+   sno=localStorage.getItem("scr")
    const [data,setData]=useState({
       price:"",
    })
@@ -125,10 +126,10 @@ const TimeTable = () =>{
                scr:scr,
                date:date
             }
-//            console.log(info)
+            console.log(info)
 
             axios.post('/ShowTiming/getShow',info).then((res=>{
-               console.log("hello="+res.data.length)
+               console.log("hell====="+res.data.length)
                if(res.data.length===0)
                {
                   while(times.length > 0) {
@@ -211,10 +212,10 @@ const TimeTable = () =>{
          if(ptr1 && ptr2)
          {
 //             console.log("hello")
-         var info={
-            scr:scr,
-            date:date
-         }
+            var info={
+               scr:scr,
+               date:date
+            }
 //            console.log(info)
 
          axios.post('/ShowTiming/getShow',info).then((res=>{
@@ -291,21 +292,16 @@ const TimeTable = () =>{
             screen:scr,
             price:data.price,
             times:times1,
-            dates:date
+            dates:date,
+            name:localStorage.getItem('theaterName'),
+            city:localStorage.getItem('city'),
+            address:localStorage.getItem('address')
          }
-         console.log(date)
+//         console.log(date)
        axios.post('/ShowTiming/addShowTiming',dataInfo,{})
-         
+      // window.location.reload()
   }}
-  
-//   let history=useHistory();
-//   var token=localStorage.getItem("token")
-//   console.log("token="+token)
-//   if(token==null)
-//      return(history.push("/Login"))
-  
-
-   
+     
  return(<>
  <div className="Admin">
  <div className="TheaterTimeTable"></div>
