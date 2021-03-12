@@ -1,0 +1,5 @@
+.admin,.addmovie,.remove,.contact-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

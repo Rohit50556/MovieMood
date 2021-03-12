@@ -1,0 +1,49 @@
+.outer__div1
+{
+    width: 80%;
+    height: 630px;
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;     
+}
+.outer__div1 > h2{
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 5px;
+}
+.booking__info > p{
+    font-weight: 500;
+    font-size: 15px;
+     display: block;
+     margin-left: 10%;
+    width: 500px;
+    height: 15px;
+}
+.booking__info > p:hover{
+    font-size: 18px;
+    color: green;
+    transition: ease 0.5s;
+}
+.button__style{
+    background-color: #F84464;
+    color: white;
+        margin-bottom: 10px;
+
+    width: 100px;
+    margin-left: 10%;
+}
+.button__style:hover{
+    width: 110px;
+    transition: ease 0.5s;
+    color: black;
+}
+.total__div{
+    margin-left: 10%;
+   font-size: 20px;
+   margin-top: 15px;
+}
+.total__div > span{
+    font-size: 20px;
+    color: red;
+}

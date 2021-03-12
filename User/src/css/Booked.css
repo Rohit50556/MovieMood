@@ -1,0 +1,11 @@
+.booked_div{
+    width: 500px;
+    height: 200px;
+    border: 1px solid goldenrod;
+    background-color: rgb(224, 204, 204);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 150px;
+    border-radius: 20px;
+    text-decoration: none;
+}

@@ -1,0 +1,54 @@
+.ineer__div{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+   padding:15px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+}
+.ineer__div > p{
+    height: 10px ;
+    font-weight: 500;
+    display: block;
+    font-family: 'Courier New', Courier, monospace;
+}
+.ineer__div > p:hover{
+    font-weight: 700;
+    color: blue;
+    font-size: 17px;
+    transition: ease 0.5s;
+}
+.ineer__div >h3:hover{
+color: blue;
+}
+.notlog__div{
+    width: 30%;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid blue;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    background-color: silver;
+}
+
+.bookingnotconfirm > p{
+     height: 10px ;
+    font-weight: 500;
+}
+.button__class{
+    background-color: #F84464;
+    color: white;
+    border-radius: 5px;
+    width: 100px;
+}
+.button__class:hover{
+    background-color: #F84464;
+    color: white;
+    border-radius: 15px;
+    transition: ease 0.5s; 
+}
+.span__style{
+    color : green;
+    font-size: large;
+}
