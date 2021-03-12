@@ -30,6 +30,8 @@ module.exports.updateTheater = async(req,res)=>{
 
     })
   };
+
+
       
   
 module.exports.addTheater = async(req,res)=>{

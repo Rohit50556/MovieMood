@@ -53,6 +53,11 @@ const bookingSchema = new mongoose.Schema({
     total: {
         type: Number,
         trim:true
+    },
+    isCanceled:{
+        type: Boolean,
+        trim:true,
+        default:false
     }
 });
 

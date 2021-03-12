@@ -30,7 +30,6 @@ module.exports.addShowTiming= async (req,res)=>{
     {
         seatArray.push({
             "seatName":k+1,
-            "seatPrice": req.body.price ,
             "seatType":"Delux",
             "className":"seat"
          });
@@ -45,6 +44,70 @@ module.exports.addShowTiming= async (req,res)=>{
 };
 
 
+// module.exports.UpdateSeatArray = async(req, res) => {
+
+//     //console.log("hello="+req.body)
+//     var data=ShowTiming.findById(req.body.id)
+//         .then((data) => { res.send(data) })
+//         .catch((e) => { console.log(e) });
+// };
+module.exports.UpdateSeatArray = async(req,res)=>{
+ 
+    //console.log(req.body)
+    var bookSeats=[]
+    var arr=[]
+//    console.log(bookSeats)
+    bookSeats=req.body.seats
+    //console.log(req.body)
+    await ShowTiming.findOne({_id:req.body.id},function(err,ShowData){
+        if(err){console.log(err)
+        res.status(500).send()
+      }
+      else{
+            // var price=ShowData.seatArray[0].price;
+               
+            for(let i=0;i<60;i++)
+            {
+                if(ShowData.seatArray[i].className==="seat occupied")
+                    bookSeats.push(i+1)
+            }
+
+
+            // ShowData.seatArray.map(ele=>{
+            //     if(ShowData.seatArray[ele])
+            //     bookSeats.push
+            // })
+            
+            for(var k=0;k<60;k++)
+            {
+                arr.push({
+                    "seatName":k+1,
+                    "seatType":"Delux",
+                    "className":"seat"
+                });
+            }
+    
+            //arr=ShowData.seatArray;
+            
+            bookSeats.map(ele=>{
+                arr[ele-1].className="seat occupied"
+            })
+
+            //console.log(arr)
+            ShowData.seatArray=arr
+            
+            
+         
+        }
+        ShowData.save();
+        // console.log("==================================")
+        // console.log(ShowData.seatArray)
+      })
+      //ShowTiming.save();
+    };
+
+
+    
 
 module.exports.getShows = async(req, res) => {
 

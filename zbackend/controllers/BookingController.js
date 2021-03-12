@@ -38,6 +38,22 @@ module.exports.getAllBookingByCustomerName = async (req, res)=>{
                     .catch((err)=>{console.log(err);});
 
 };
+
+
+module.exports.cancelBooking = async (req, res)=>{
+
+    console.log(req.body)
+    await Booking.findOne({_id:req.body.id},function(err,BookingData){
+        if(err){console.log(err)
+        res.status(500).send()
+      }
+      else{
+            BookingData.isCanceled=true   
+        }
+        BookingData.save()
+      })
+};
+
 module.exports.getAllBookingByCustomerId = async (req, res)=>{
 
     await Booking.find({userId:req.params.userId})

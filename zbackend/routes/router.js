@@ -176,6 +176,7 @@ router.post("/getShow",ShowTimingController.getShows);
 router.post("/addShowTiming",ShowTimingController.addShowTiming);
 router.get("/getShow/:city/:name/:day/:month/:year", ShowTimingController.getShow);
 router.get("/getShowById/:id",ShowTimingController.getShowById);
+router.post("/UpdateSeatArray",ShowTimingController.UpdateSeatArray);
 
 // router.get("/findshow/:name/:city/:date", ShowController.findshow);
 
@@ -192,6 +193,7 @@ router.get("/getAllSwap",SwapSeatRequestController.getAllSwap);
 // router.post("/addSwap",SwapSeatRequestController.addSwap);
 
 router.get("/getAllBooking",BookingController.getAllBooking);
+router.post("/cancelBooking",BookingController.cancelBooking);
 router.post("/addBooking",BookingController.addBooking);
 router.get("/getAllBookingByCustomerName/:userName",BookingController.getAllBookingByCustomerName);
 router.get("/getAllBookingByCustomerId/:userId",BookingController.getAllBookingByCustomerId);
