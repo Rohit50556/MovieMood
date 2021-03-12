@@ -20,8 +20,9 @@ module.exports.addShowTiming= async (req,res)=>{
     showTiming.screen = req.body.screen;
     showTiming.Timining=req.body.times
  
-    showTiming.theaterName = "xyz";
-    showTiming.city= "xyz";
+    showTiming.theaterName = req.body.name;
+    showTiming.city= req.body.city;
+    showTiming.theaterAddress= req.body.address;
 
 
     var seatArray = []
@@ -45,11 +46,12 @@ module.exports.addShowTiming= async (req,res)=>{
 
 
 
+module.exports.getShows = async(req, res) => {
 
-module.exports.getShow = async(req, res) => {
-
+    //console.log("="+req.body)
+  //  ShowTiming.find({ screen:req.body.scr,ShowDate:req.body.date})
     console.log("hello="+req.body)
-    ShowTiming.find({ movieName:req.body.name,ShowDate:req.body.date})
+    ShowTiming.find({ screen:req.body.scr,ShowDate:req.body.date})
         .then((data) => { res.send(data) })
         .catch((e) => { console.log(e) });
 };

@@ -9,23 +9,25 @@ module.exports.getAllBooking= async (req, res)=>{
 };
 module.exports.addBooking = async (req, res)=>{
 
+    console.log(req.body)
     var booking = new Booking();
-    booking.showId=req.body.showId;
-    booking.movieId=req.body.movieId;
-    booking.theaterId=req.body.theaterId;
-    booking.userId=req.body.userId;
-    booking.date= req.body.date;
-    booking.startTime=req.body.startTime;
-    booking.seat=req.body.seat;
-    booking.pricePerSeat= req.body.pricePerSeat;
-    booking.totalNoOfSeat= req.body.totalNoOfSeat;
-    booking.total= req.body.total;
+
+    booking.userName=req.body.userName;
     booking.movieName= req.body.movieName;
     booking.theaterName= req.body.theaterName;
-    booking.userName= req.body.userName;
-    booking.bookingStatus= req.body.bookingStatus;
+    booking.theaterAddress= req.body.theaterAddress;
+    booking.date= req.body.date;
+    booking.startTime=req.body.startTime;
+    booking.totalNoOfSeat= req.body.totalNoOfSeat;
+    booking.seats=req.body.seats;
+    booking.snacks=req.body.snacks;
+    booking.snacksQ=req.body.snacksQ;
+    booking.seatprice=req.body.seatPrice;
+    booking.snacksprice=req.body.snacksPrice;
+    booking.total= req.body.total;
+    
 
-    await booking.save().then((m)=>{res.send(m);}).catch((err)=>{console.log(err);});
+     await booking.save().then((m)=>{res.send(m);}).catch((err)=>{console.log(err);});
 
 
 };

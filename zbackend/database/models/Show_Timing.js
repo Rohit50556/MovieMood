@@ -36,6 +36,10 @@ const showSchema = new mongoose.Schema({
     seatArray :{
         type : [Object],
         trim:true
+    },
+    theaterAddress:{
+        type : String,
+        trim:true
     }
 });
 

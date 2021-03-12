@@ -2,50 +2,6 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose; 
 
 const bookingSchema = new mongoose.Schema({
-    showId: {
-        type: Schema.Types.ObjectId,
-        ref: "show_Timing",
-        trim:true
-    },
-    movieId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Movie',
-        trim:true
-    },
-    theaterId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Theater',
-        trim:true
-    },
-    userId: {
-        type: Schema.Types.ObjectId,
-        ref: "Customer",
-        trim:true
-    },
-    date: {
-        type: Date,
-        trim:true
-    },
-    startTime: {
-        type: String,
-        trim:true
-    },
-    seat: {
-        type: [Number],
-        trim:true
-    },
-    pricePerSeat: {
-        type: Number,
-        trim:true
-    },
-    totalNoOfSeat: {
-        type: Number,
-        trim:true
-    },
-    total: {
-        type: Number,
-        trim:true
-    },
     movieName: {
         type: String,
         trim:true
@@ -58,10 +14,45 @@ const bookingSchema = new mongoose.Schema({
         type: String,
         trim:true
     },
-    bookingStatus:{
-        type:String,
-        trim:true,
-        default:"Booked"
+    theaterAddress: {
+        type: String,
+        trim:true
+    },
+    date: {
+        type: String,
+        trim:true
+    },
+    startTime: {
+        type: String,
+        trim:true
+    },
+    totalNoOfSeat: {
+        type: Number,
+        trim:true
+    },
+    seats: {
+        type: [Number],
+        trim:true
+    },
+    snacks: {
+        type: [String],
+        trim:true
+    },
+    snacksQ: {
+        type: [Number],
+        trim:true
+    },
+    seatprice: {
+        type: Number,
+        trim:true
+    },
+    snacksprice: {
+        type: Number,
+        trim:true
+    },
+    total: {
+        type: Number,
+        trim:true
     }
 });
 
