@@ -4,8 +4,10 @@ import {useHistory} from 'react-router-dom'
 import {Button,Form,Col} from "react-bootstrap";
 import "../css/AddMovie.css"
 import axios from 'axios';
-
-
+var language=[]
+var genre=[]
+var cast=[]
+var file1="",file2=""
 var casts=[]
 function adddata(Cast,id){
   return {Cast,id}
@@ -38,10 +40,6 @@ const [castdetails,setCast]=useState([])
 
   
   const formdata= new FormData();
-  var language=[]
-  var genre=[]
-  var cast=[]
- var file1="",file2=""
 
   const [input,setInput]=useState(
     {
@@ -184,6 +182,7 @@ function handleClick(event){
   formdata.append('duration',input.duration)
   formdata.append('url',input.url)
 
+  console.log(language)
   language.forEach(ele=>{
     formdata.append('lang',ele);
   })
