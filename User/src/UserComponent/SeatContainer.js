@@ -6,7 +6,7 @@ const SeatContainer = (props) => {
   const [seat,setSeat] = useState(null)
 
   useEffect(() => {
-    Axios.get("/ShowTiming/getShowById/604b2fee2e9249339c548a30").then(res => {
+    Axios.get("/ShowTiming/getShowById/"+localStorage.getItem("id")).then(res => {
       setSeat(res.data.seatArray)
     })
   },[])
@@ -16,11 +16,14 @@ const SeatContainer = (props) => {
       const temp_seats = seat
       let k = 10*i + j
       if(temp_seats[k].className === "seat"){
-        temp_seats[k].className  = "seat occupied" 
+        temp_seats[k].className  = "seat selected" 
         const temp_selectedSeats = props.selectedSeats
         temp_selectedSeats.push(temp_seats[k])
         props.setSelectedSeats(temp_selectedSeats)
       } 
+      else if(temp_seats[k].className === "seat occupied")
+      { 
+      }
       else {
         temp_seats[k].className = "seat"
         const temp_selectedSeats = props.selectedSeats

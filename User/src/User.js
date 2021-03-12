@@ -10,6 +10,7 @@ import SeatBookContainer from "./UserComponent/SeatBookContainer";
 import SnackContainer from "./UserComponent/SnackContainer";
 import Profile from "./UserComponent/Profile";
 import History from "./UserComponent/History"
+import Query from "../src/UserComponent/Query"
 
 import Booked from "./UserComponent/Booked";
 import BookingPage from "./UserComponent/BookingPage";
@@ -39,6 +40,7 @@ function App() {
           <Route path="/history" exact component={History} />
           <Route path="/bookingpage" exact component={BookingPage}/>
           <Route path="/booked" exact component={Booked}/>
+          <Route path="/query" exact component={Query}/>
         </Switch>
       </div>
     </Router>

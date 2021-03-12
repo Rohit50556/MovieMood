@@ -11,11 +11,13 @@
 }
 
 .seat.selected {
-  background-color: #6feaf6;
+  
+  background-color: #fff;
 }
 
 .seat.occupied {
-  background-color: #fff;
+  background-color: red;
+
 }
 
 .seat:nth-of-type(2) {

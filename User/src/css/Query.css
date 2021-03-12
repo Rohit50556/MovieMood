@@ -1,0 +1,26 @@
+.query__page{
+    width: 60%;
+    height: 600px;
+    border: 1px solid black;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #f1f1f1;
+    margin-top: 30px;
+}
+.query__page >p{
+    font-size: 25px;
+    font-weight: 500;
+    margin-left: 30px;
+}
+.query__page >p:hover{
+    color: black;
+}
+
+.query__buttons > button{
+    background-color: #165580;
+    color: white;
+    border-radius: 5px;
+    width: 170px;
+    margin-left: 30px;
+    margin-top: 30px;
+}

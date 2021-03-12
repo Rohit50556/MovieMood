@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState,useEffect} from 'react';
 import "../css/BookingPage.css"
 import TextField from '@material-ui/core/TextField';
 import Footer from "../UserComponent/Footer"
@@ -8,6 +8,7 @@ import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissa
 import validator from 'validator'
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
+
 var seats=[]
 var snacks=[]
 var snacksQ=[]
@@ -98,9 +99,18 @@ const BookingPage = (props) => {
             total:tprice+price,
             messageto:email
           }
-         
+         var data={
+           id:localStorage.getItem("id"),
+           seats:seats
+         }
+
           axios.post("/SendMail/sendBookingInfo",bookInfo,{})
           axios.post("/Booking/addBooking",bookInfo,{})
+          axios.post("/ShowTiming/UpdateSeatArray",data,{})
+          axios.post("/Booking/cancelBooking",{id:"604baea1dc5e623a9cd5a752"},{})
+
+
+
 
           history.push("/Booked")
           

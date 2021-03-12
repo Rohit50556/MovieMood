@@ -58,7 +58,7 @@ function AddLine(item,index){
           {
           //  alert(2)
             temp.push(
-             <Link to="seatBookContainer"  onClick={()=>(localStorage.setItem("show","2"),localStorage.setItem("name",city),localStorage.setItem("id",info[index]._id))}>
+             <Link to="seatBookContainer"  onClick={()=>(localStorage.setItem("show","2"),localStorage.setItem("name",city),localStorage.setItem("id",info[index]._id),localStorage.setItem("theaterName",info[index].theaterName),localStorage.setItem("theaterAddress",info[index].theaterAddress))}>
              {" "}
              <li>12pm-3am</li>
              </Link> 
@@ -70,7 +70,7 @@ function AddLine(item,index){
           {
           //  alert(3)
             temp.push(
-             <Link to="seatBookContainer" onClick={()=>(localStorage.setItem("show","3"),localStorage.setItem("name",city),localStorage.setItem("id",info[index]._id))}>
+             <Link to="seatBookContainer" onClick={()=>(localStorage.setItem("show","3"),localStorage.setItem("name",city),localStorage.setItem("id",info[index]._id),localStorage.setItem("theaterName",info[index].theaterName),localStorage.setItem("theaterAddress",info[index].theaterAddress))}>
              {" "}
              <li>4pm-7pm</li>
              </Link> 
@@ -82,7 +82,7 @@ function AddLine(item,index){
           {
             //alert(4)
             temp.push(
-             <Link to="seatBookContainer" onClick={()=>(localStorage.setItem("show","4"),localStorage.setItem("name",city),localStorage.setItem("id",info[index]._id))}>
+             <Link to="seatBookContainer" onClick={()=>(localStorage.setItem("show","4"),localStorage.setItem("name",city),localStorage.setItem("id",info[index]._id),localStorage.setItem("theaterName",info[index].theaterName),localStorage.setItem("theaterAddress",info[index].theaterAddress))}>
              {" "}
              <li>9pm-12am</li>
              </Link> 
