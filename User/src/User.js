@@ -9,12 +9,13 @@ import CastDetailPage from "./UserComponent/CastDetailPage";
 import SeatBookContainer from "./UserComponent/SeatBookContainer";
 import SnackContainer from "./UserComponent/SnackContainer";
 import Profile from "./UserComponent/Profile";
-import History from "./UserComponent/History"
-import Query from "../src/UserComponent/Query"
-
+import History from "./UserComponent/History";
+import SwapRequest from "./UserComponent/SwapRequest";
+import Query from "../src/UserComponent/Query";
+import Swap from "../src/UserComponent/Swap";
 import Booked from "./UserComponent/Booked";
 import BookingPage from "./UserComponent/BookingPage";
-
+import Cancel from "./UserComponent/Cancel"
 import {AuthContextProvider} from "../src/Context/AutoContext"
 
 import axios from 'axios';
@@ -30,6 +31,7 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/adjust" exact component={Adjust} />
           <Route path="/login" exact component={Login} />
+          <Route path="/swap" exact component={Swap} />
           <Route path="/register" exact component={Register} />
           <Route path="/moviedetail" exact component={MovieDetail} />
           <Route path="/castdetailpage" exact component={CastDetailPage} />
@@ -41,6 +43,9 @@ function App() {
           <Route path="/bookingpage" exact component={BookingPage}/>
           <Route path="/booked" exact component={Booked}/>
           <Route path="/query" exact component={Query}/>
+          <Route path="/Cancel" exact component={Cancel}/>
+          <Route path="/swapreq" exact component={SwapRequest}/>
+          
         </Switch>
       </div>
     </Router>

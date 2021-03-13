@@ -106,7 +106,9 @@ function AddLine(item,index){
         <hr />
         <div className="cinema__show">
           <div>
-            <h5>{info[i].theaterName}</h5>
+            <h1 style={{marginLeft:'70px',color:'black'}}>{info[i].theaterName}</h1>
+            <h5>{info[i].theaterAddress}</h5>
+            
           </div>
           <div className="ul__shows" style={{marginLeft:'100px'}}>
             <ul>

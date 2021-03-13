@@ -7,44 +7,72 @@ import SnackCard from "../UserComponent/SnackCard"
 
 
 const SnackContainer = (props) => {
-    
-    const [snacks, setSnacks] = useState([
-     {
-         _id:1, 
-         photo :Snack1, 
-         name:"Cheesey burger", 
-         price : 150,
-         quant : 0,
-     },
-     {
-         _id:2, 
-         photo :Snack1, 
-         name:"burger", 
-         price :150,
-         quant : 0,
-     },
-      {
-         _id:3  , 
-         photo :Snack1 , 
-         name:"Paneer", 
-         price :150,
-         quant : 0,
-     },
-     {
-         _id: 4, 
-         photo :Snack1 , 
-         name:"Daal", 
-         price :150,
-         quant : 0,
-     },
-     {
-         _id:5, 
-         photo :Snack1, 
-         name:"Cheesey burger", 
-         price :150,
-         quant : 0,
-     },
- ])
+   
+    function importAll(r) {
+        let images = {};
+        r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+        return images;
+    }
+
+        const images = importAll(require.context('../Assets/Snacks', false, /\.(png|jpe?g|svg)$/));
+        console.log(images)
+        var priceArray  = [60,100,80,120,300,250,150,120,200,160,100,120,50,130,220,100,210,230] 
+        var picNameArray = ["Oreo.jpg","Popcorn.jpg","Pepsi.jpg","Snickers.jpg","Barbecue.jpg","Breakfast.jpg","Brown Cookie.jpg","Chessey Burger.jpg","Cherry Cake.jpg","Choclate.jpg","Coffe.jpg",
+        "CreamCookie.jpg","Kurkure.jpeg","Tost.jpg","TostFrenhFries.jpg"
+        ,"Maggie.jpg","Margerita.jpg","OlivePizza.jpg"]
+        var nameArray = ["Oreo","Popcorn","Pepsi","Snickers","Barbecue","Breakfast","Brown Cookie","Chessey Burger","Cherry Cake","Choclate","Coffe","CreamCookie","Kurkure","Chessey Tost","Tost-FrenhFries"
+     ,"Spicy Maggie","Margerita","Olive Pizza"]
+        var arrayobjsnack = []
+         for(var k=0;k<18;k++)
+        {
+            arrayobjsnack.push( {
+            _id: k+1, 
+            photo :images[picNameArray[k]].default, 
+            name:nameArray[k], 
+            price : priceArray[k],
+            quant : 0,
+        });
+    }
+    const [snacks, setSnacks] = useState(
+        arrayobjsnack 
+ )
+//     const [snacks, setSnacks] = useState([
+//      {
+//          _id:1, 
+//          photo :Snack1, 
+//          name:"Cheesey burger", 
+//          price : 150,
+//          quant : 0,
+//      },
+//      {
+//          _id:2, 
+//          photo :Snack1, 
+//          name:"burger", 
+//          price :150,
+//          quant : 0,
+//      },
+//       {
+//          _id:3  , 
+//          photo :Snack1 , 
+//          name:"Paneer", 
+//          price :150,
+//          quant : 0,
+//      },
+//      {
+//          _id: 4, 
+//          photo :Snack1 , 
+//          name:"Daal", 
+//          price :150,
+//          quant : 0,
+//      },
+//      {
+//          _id:5, 
+//          photo :Snack1, 
+//          name:"Cheesey burger", 
+//          price :150,
+//          quant : 0,
+//      },
+//  ])
 
  const [count,setCount] = useState(0)
 

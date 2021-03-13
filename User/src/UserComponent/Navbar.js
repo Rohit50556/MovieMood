@@ -98,14 +98,14 @@ const Navbar = () => {
           <Link className="nav_left_link" to="/history">
             <p>History</p>
           </Link>
-          <Link className="nav_left_link" to="/adjust">
-            <p>Adjust</p>
+          <Link className="nav_left_link" to="/query">
+            <p>Query</p>
           </Link>
           <Link className="nav_left_link" to="/profile">
             <p>Profile</p>
           </Link>
-          <Link className="nav_left_link" to="/swap">
-            <p>Swap</p>
+          <Link className="nav_left_link" to="/swapreq">
+            <p>Swap Request</p>
           </Link>
         </div>
       </div>
@@ -145,26 +145,30 @@ const Navbar = () => {
         </div>
        {
          loggedIn === false? (
-
+            <>
             <Link className="nav_right_link" to="/login">
           <div className="nav__login">
             <AccountCircleIcon style={{ color: "white" }} />
             <p style={{ color: "white" }}>Login/Register</p>
           </div>
         </Link>
+        </>
          ):(
    
-           
+           <>
+          <p style={{color:"white", marginTop:"15px", marginRight:"15px"}}>WelCome, {localStorage.getItem("UserName")}</p>
            <Link className="nav_right_link" to="/login">
           <div className="nav__login">
             <AccountCircleIcon style={{ color: "white" }} />
-            <p style={{ color: "white" }}><button onClick={()=>{localStorage.clear()
+            <p style={{ color: "white" }}><button className="btnbtn" onClick={()=>{localStorage.clear()
               useHistory.push("/login")}}>Logout</button></p>
           </div>  
         </Link>
+        </>
          )
        }
       </div>
+    
     );
     // function handleChange(e){
     //   var city=e.target.
@@ -207,14 +211,11 @@ const Navbar = () => {
             <Link to="/history">
               <p>History</p>
             </Link>
-            <Link to="/adjust">
+            <Link to="/Profile">
               <p>Profile</p>
             </Link>
-            <Link to="/swap">
-              <p>Swap</p>
-            </Link>
-            <Link to="/snacks">
-              <p>Snacks</p>
+            <Link to="/swapreq">
+              <p>Swap Request</p>
             </Link>
           </div>
         </div>
@@ -225,9 +226,9 @@ const Navbar = () => {
         <div
           className={scrolled ? "nav__middel scrolled__middel " : "nav__middel"}
         >
-         
          <div style={{display:"flex" , alignItems:"center" , marginBottom:"15px" , marginTop:"15px" ,marginLeft:"30%" }}>
             <p style={{ fontSize:"20px", fontWeight:"500px", marginRight:"5px", color:"blue" , marginBottom:"8px", marginLeft:"10%"}}></p>
+            <p style={{color:"white" , fontSize:"17px", fontWeight:"400"}}>Select City  </p>
           <Select
             style={{width:"150px", color:"blue"}}
             margin="dense"
@@ -249,26 +250,6 @@ const Navbar = () => {
         </Select>
          </div>
         
-          {/* <TextField
-            id="filled-select-currency"
-            select
-            label="City Name"
-            style={{
-              width: "200px",
-              backgroundColor: "#90CAF9",
-              marginTop: "auto",
-              height: "42px",
-              color: "#81D4FA",
-            }}
-            margin="normal"
-            variant="filled"
-          >
-            {currencies.map((option) => (
-              <MenuItem key={option.value} value={option.value} selected="true" onChange={(e)=>handleChange(e)}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField> */}
         </div>
         {navRight}
         <SwipeableDrawer
@@ -330,3 +311,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+
+

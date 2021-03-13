@@ -18,6 +18,7 @@
     margin-left: 72%;
     background-color: #ececec;
     position: fixed;
+    overflow-y: scroll;
 }
 .count__seat{
   color: rgb(2, 2, 26);

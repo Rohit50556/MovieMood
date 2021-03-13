@@ -46,7 +46,12 @@ var userlogged;
           localStorage.setItem("loggedUser" , res.data.existingUser.email)
           localStorage.setItem("city" , res.data.existingUser.city)
           localStorage.setItem("UserName" , res.data.existingUser.username)
-          
+          localStorage.setItem("fname" ,res.data.existingUser.fname)
+          localStorage.setItem("lname" ,res.data.existingUser.lname)
+          localStorage.setItem("address", res.data.existingUser.address)
+          localStorage.setItem("gender", res.data.existingUser.gender)
+          localStorage.setItem("wallet", res.data.existingUser.wallet)
+
               history.push("/")
               userlogged = (localStorage.getItem("loggedUser"))
           console.log(localStorage.getItem("loggedUser"))

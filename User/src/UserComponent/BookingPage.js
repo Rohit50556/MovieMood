@@ -31,13 +31,13 @@ const BookingPage = (props) => {
   var time=""
   var scrno=localStorage.getItem('show')
   if(scrno==="1")
-    time="8AM-11AM"
+    time="08AM-11AM"
   else if(scrno==="2")
-    time="12PM-3PM"
+    time="12PM-03PM"
   else if(scrno==="3")
-    time="4PM-7PM"
+    time="04PM-07PM"
   else if(scrno==="4")
-    time="9PM-12AM"
+    time="09PM-12AM"
     
   var tprice=props.location.seatPrice.tprice
     // console.log(props.location.seatPrice.tprice)
@@ -57,7 +57,6 @@ const BookingPage = (props) => {
 
   var tempsnacks=[]
   
-    //console.log(seats)
   var price=0
     props.location.snacksArray.dummy.map(ele=>{
     snacks.push(ele.name)
@@ -66,9 +65,6 @@ const BookingPage = (props) => {
     price+=ele.price*ele.quant
   })
     
-
-  //console.log(snacks)
-//  alert(seats.length)
 
 
 
@@ -97,20 +93,37 @@ const BookingPage = (props) => {
             seatPrice:tprice,
             snacksPrice:price,
             total:tprice+price,
-            messageto:email
+            messageto:email,
+            showId:localStorage.getItem("id")
           }
          var data={
            id:localStorage.getItem("id"),
            seats:seats
          }
 
-          axios.post("/SendMail/sendBookingInfo",bookInfo,{})
           axios.post("/Booking/addBooking",bookInfo,{})
           axios.post("/ShowTiming/UpdateSeatArray",data,{})
-          axios.post("/Booking/cancelBooking",{id:"604baea1dc5e623a9cd5a752"},{})
 
 
+         localStorage.setItem("wallet",localStorage.getItem('wallet')-tprice-price);
+         var wallet=localStorage.getItem("wallet")
 
+         var info={
+           wallet:wallet,
+           email:localStorage.getItem("loggedUser")
+         }
+         axios.post("/Customer/UpdateWallet",info,{})
+         
+         axios.post("/SendMail/sendBookingInfo",bookInfo,{})
+
+          localStorage.removeItem("show")
+          localStorage.removeItem("theaterName")
+          localStorage.removeItem("id")
+          localStorage.removeItem("movieName")
+          localStorage.removeItem("city")
+          localStorage.removeItem("name")
+          localStorage.removeItem("theaterAddress")
+          
 
           history.push("/Booked")
           

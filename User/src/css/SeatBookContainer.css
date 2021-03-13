@@ -4,6 +4,7 @@
   margin-left: 15px;
   border: 1px solid black;
   background-color:whitesmoke;
+  overflow-y: scroll;
 }
 .screen__seat {
   width: 70%;

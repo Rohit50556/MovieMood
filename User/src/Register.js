@@ -71,6 +71,7 @@ const LoginClass = () => {
   const [username,setUsername]=useState("");
   const [address,setAddress]=useState("");
   const [city,setCity]=useState();
+  const [wallet]=useState(0);
   async function register(e){
     e.preventDefault();
     try {
@@ -82,7 +83,8 @@ const LoginClass = () => {
         gender,
         username,
         address,
-        city
+        city,
+        wallet
       };
 
       axios.post(
