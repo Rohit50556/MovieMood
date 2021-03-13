@@ -49,6 +49,7 @@ const UpdateDetails = () =>{
 
   
 function handleUpdate(){
+   localStorage.setItem("scr" ,TheaterData.noOfScreen)
    console.log(TheaterData)
    axios.post("/Theater/updateTheater/"+id,TheaterData)
 }

@@ -81,9 +81,21 @@ const TimeTable = () =>{
       dates.pop();
       }
      
+      var day="0"
+      var month="0"
       var currentDate=new Date();
-      var day = currentDate.getDate()
-      var month = currentDate.getMonth() + 1
+      var temp = currentDate.getDate()
+      if(temp<10)
+         day+=temp;
+      else
+         day=temp
+      
+      var tempm= currentDate.getMonth() + 1
+      if(tempm<10)
+         month+=tempm;
+      else
+         month=tempm
+         
       var year = currentDate.getFullYear()
       dates.push(addDate(day+"/"+month+"/"+year,1))
       dates.push(addDate((day+1)+"/"+month+"/"+year,2))
@@ -136,10 +148,10 @@ const TimeTable = () =>{
                      times.pop();
                   }
 
-                     times.push(addTime("8am-11am",1))
-                     times.push(addTime("12pm-3pm",2))
-                     times.push(addTime("4pm-7pm",3))
-                     times.push(addTime("9pm-12am",4))
+                     times.push(addTime("08AM-11AM",1))
+                     times.push(addTime("12PM-03PM",2))
+                     times.push(addTime("04PM-07PM",3))
+                     times.push(addTime("09PM-12AM",4))
                }
                else{
                   while(buff.length>0)
