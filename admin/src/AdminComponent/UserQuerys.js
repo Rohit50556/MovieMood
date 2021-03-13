@@ -1,8 +1,3 @@
-
-
-
-
-
 import React, { useState,useEffect} from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -14,10 +9,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {Button} from "react-bootstrap";
 import { Modal } from './Modal';
-
-
-//import Button from '@material-ui/core/Button';
-
 
 
 var msg=""
@@ -40,8 +31,8 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(no,name,email,pno) {
-  return {no,name,email,pno };
+function createData(no,name,email) {
+  return {no,name,email };
 }
 
 function createArr(email,query) {
@@ -82,7 +73,7 @@ const UserQuery = ()=> {
     var i=0;
       query.forEach(ele=>{
         i++
-        rows.push(createData(i,ele.userName,ele.email,ele.mobile));
+        rows.push(createData(i,ele.userName,ele.email));
         arr.push(createArr(ele.email,ele.query))    
         //  console.log(ele._id)
       })  
@@ -120,7 +111,6 @@ const UserQuery = ()=> {
           <StyledTableCell>Index</StyledTableCell>
             <StyledTableCell>UserName</StyledTableCell>
             <StyledTableCell>EmailIs</StyledTableCell>
-            <StyledTableCell >Phone Number</StyledTableCell>
             <StyledTableCell ></StyledTableCell>
           </TableRow>
         </TableHead>
@@ -135,7 +125,6 @@ const UserQuery = ()=> {
                 {row.name}
               </StyledTableCell>
               <StyledTableCell >{row.email}</StyledTableCell>
-              <StyledTableCell >{row.pno}</StyledTableCell>
               <StyledTableCell >
                   <Button color="primary" value={row.no} onClick={handleClick}>Answer</Button>|
                   <button type="button" value={row.no} class="btn btn-danger">Delete</button></StyledTableCell> 
