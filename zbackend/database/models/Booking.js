@@ -58,6 +58,19 @@ const bookingSchema = new mongoose.Schema({
         type: Boolean,
         trim:true,
         default:false
+    },
+    validdate:{
+        type: Boolean,
+        trim:true,
+        default:true
+    },
+    showId:{
+        type: String,
+        trim:true,
+    },
+    email:{
+        type: String,
+        trim:true,    
     }
 });
 

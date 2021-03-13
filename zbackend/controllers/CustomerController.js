@@ -22,7 +22,7 @@ module.exports.addCustomer = async(req,res)=>{
     customer.city=req.body.city;
     customer.gender=req.body.gender;
     customer.address=req.body.address;
-    // customer.wallet= req.body.wallet;
+    customer.wallet= req.body.wallet;
       // console.log("hale che")
     if(!customer.email || !customer.password)
     {
@@ -151,6 +151,21 @@ module.exports.getLoggedEndUserData = async (req,res) => {
   } catch(err) {
     res.status(404).send(err)
   }
+}
+
+module.exports.UpdateWallet = async (req,res) => {
+  console.log(req.body)
+
+  await Customer.findOne({email:req.body.email},function(err,CustomerData){
+    if(err){console.log(err)
+    res.status(500).send()
+  }
+  else{
+      CustomerData.wallet=req.body.wallet
+    }
+     CustomerData.save();
+
+  })
 }
 
 

@@ -51,20 +51,20 @@ module.exports.addShowTiming= async (req,res)=>{
 //         .then((data) => { res.send(data) })
 //         .catch((e) => { console.log(e) });
 // };
-module.exports.UpdateSeatArray = async(req,res)=>{
+module.exports.UpdateSeatArrayAfterCancellation= async(req,res)=>{
  
-    //console.log(req.body)
+    console.log(req.body)
     var bookSeats=[]
+    var removeseat=[]
     var arr=[]
-//    console.log(bookSeats)
-    bookSeats=req.body.seats
-    //console.log(req.body)
+    removeseat=req.body.seats
+    
     await ShowTiming.findOne({_id:req.body.id},function(err,ShowData){
         if(err){console.log(err)
         res.status(500).send()
       }
       else{
-            // var price=ShowData.seatArray[0].price;
+            //var price=ShowData.seatArray[0].price;
                
             for(let i=0;i<60;i++)
             {
@@ -72,11 +72,6 @@ module.exports.UpdateSeatArray = async(req,res)=>{
                     bookSeats.push(i+1)
             }
 
-
-            // ShowData.seatArray.map(ele=>{
-            //     if(ShowData.seatArray[ele])
-            //     bookSeats.push
-            // })
             
             for(var k=0;k<60;k++)
             {
@@ -87,32 +82,67 @@ module.exports.UpdateSeatArray = async(req,res)=>{
                 });
             }
     
-            //arr=ShowData.seatArray;
             
             bookSeats.map(ele=>{
                 arr[ele-1].className="seat occupied"
             })
 
-            //console.log(arr)
+            removeseat.map(ele=>{
+                arr[ele-1].className="seat"
+            })
+
             ShowData.seatArray=arr
-            
-            
          
         }
         ShowData.save();
-        // console.log("==================================")
-        // console.log(ShowData.seatArray)
       })
-      //ShowTiming.save();
     };
 
+
+module.exports.UpdateSeatArray = async(req,res)=>{
+ 
+    //console.log(req.body)
+    var bookSeats=[]
+    var arr=[]
+    bookSeats=req.body.seats
+    await ShowTiming.findOne({_id:req.body.id},function(err,ShowData){
+        if(err){console.log(err)
+        res.status(500).send()
+      }
+      else{
+            for(let i=0;i<60;i++)
+            {
+                if(ShowData.seatArray[i].className==="seat occupied")
+                    bookSeats.push(i+1)
+            }
+
+            
+            for(var k=0;k<60;k++)
+            {
+                arr.push({
+                    "seatName":k+1,
+                    "seatType":"Delux",
+                    "className":"seat"
+                });
+            }
+    
+            
+            bookSeats.map(ele=>{
+                arr[ele-1].className="seat occupied"
+            })
+
+            ShowData.seatArray=arr
+         
+        }
+        ShowData.save();
+      })
+    };
 
     
 
 module.exports.getShows = async(req, res) => {
 
     //console.log("="+req.body)
-  //  ShowTiming.find({ screen:req.body.scr,ShowDate:req.body.date})
     console.log("hello="+req.body)
     ShowTiming.find({ screen:req.body.scr,ShowDate:req.body.date})
         .then((data) => { res.send(data) })
@@ -133,10 +163,6 @@ module.exports.getShowById = async(req, res) => {
 
     console.log("this is req "+req.params.id)
     
-   //  ShowTiming.findById(req.params.id)
-   //      .then((data) => { res.send(data); })
-   //      .catch((e) => { console.log(e); });
-
    const data = await ShowTiming.findById(req.params.id)
    res.send(data)
 };

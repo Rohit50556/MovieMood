@@ -5,50 +5,57 @@ const Schema = mongoose.Schema;
 
 const SwapSeatSchema = new mongoose.Schema({
 
-    Booking_ID:{
-        type: Schema.Types.ObjectId,
-        ref: "Booking",
+    Booking_ID1:{
+        type: String,
         trim:true        
     },
-    isSwappable:{
-        type:Boolean,
+    Booking_ID2:{
+        type: String,
+        trim:true,
+        default:null        
+    },
+    SeatNo1:{
+        type:[Number],
         trim:true
     },
     SwapStatus:{
         type:Boolean,
+        trim:true,
+        default:false
+    },
+    username1:{
+        type: String,
         trim:true
     },
-    userId1:{
-        type: Schema.Types.ObjectId,
-        ref: "Customer",
-        trim:true
-    },
-    userId2:{
-        type: Schema.Types.ObjectId,
-        ref: "Customer",
-        trim:true
+    username2:{
+        type: String,
+        trim:true,
+        default:null
     }, 
     email1:{
         type: String,
-        unique: true,
-        required: true,
         trim: true,
-        validate(value) {
-            if (!validator.isEmail(value)) {
-                throw new Error('email is invalid please enter in correct formate');
-            }
-        }
     },
     email2:{
         type: String,
-        unique: true,
-        required: true,
         trim: true,
-        validate(value) {
-            if (!validator.isEmail(value)) {
-                throw new Error('email is invalid please enter in correct formate');
-            }
-        }
+        default:null
+    },
+    theaterName:{
+        type: String,
+        trim: true,
+    },
+    showtime:{
+        type: String,
+        trim: true,
+    },
+    date:{
+        type: String,
+        trim: true,
+    },
+    SwapSeatNo:{
+        type: Number,
+        trim: true,   
     }
 });
 
