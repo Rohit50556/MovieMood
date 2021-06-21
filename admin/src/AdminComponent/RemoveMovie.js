@@ -3,15 +3,46 @@ import {Multiselect} from 'multiselect-react-dropdown';
 import { Form,Col} from 'react-bootstrap';
 import '../css/removemovie.css';
 import Button from '@material-ui/core/Button';
-import axios from 'axios'
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 var movies=[]
 var movies1=[]
 var str=""
+   
 
 function addMovie(name,id){
        return {name,id}
      }
 const RemoveMovie = () =>{
+       function alert()
+       {
+
+              toast.error("Movie Successfully Removed",{
+             position: "top-right",
+             autoClose: 3000,
+             hideProgressBar: false,
+             closeOnClick: true,
+             pauseOnHover: true,
+             draggable: true,
+             progress: undefined,
+             })
+    
+       }
+       function alert1()
+       {
+
+              toast.warn("Please Select Movie Name",{
+             position: "top-right",
+             autoClose: 3000,
+             hideProgressBar: false,
+             closeOnClick: true,
+             pauseOnHover: true,
+             draggable: true,
+             progress: undefined,
+             })
+    
+       }
           
        movies=movies1;
        const [movielist,setMovie]=useState([]);
@@ -50,14 +81,15 @@ const RemoveMovie = () =>{
               str=""
        }
        function handleClick(){
-              console.log(str)
+              // console.log(str)
               if(str==="")
-                     alert("Please Select Movie Name")
+                     alert1()
               else{
                      var link="http://localhost:3030/Movie/deleteMovieByName/"+str
-                     console.log(link)
+                    // console.log(link)
                     axios.get(link)
-                    window.location.reload();
+                    alert();
+                   // window.location.reload();
               }
 //                     axios.post("http://localhostdeleteMovieByName")
               
@@ -83,7 +115,8 @@ const RemoveMovie = () =>{
          </Button>
        </Form>
 </div>
- </div> 
+ </div>
+ <ToastContainer style={{marginTop:'30px'}}/> 
  </>
  );
 }

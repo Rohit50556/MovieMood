@@ -27,6 +27,7 @@
 .nav-menu.active {
   left: 0;
   transition: 500ms;
+  
 }
 
 .nav-text {
@@ -52,6 +53,8 @@
   text-decoration: none;
   font-size: 20px;
   margin-left: -20px;
+  border-bottom: 2px solid #fec500;
+  
 }
 
 .nav-menu-items {

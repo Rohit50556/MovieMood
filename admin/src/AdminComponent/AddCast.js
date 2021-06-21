@@ -3,8 +3,40 @@ import React,{useState} from 'react';
 import {Button,Form} from "react-bootstrap";
 import '../css/castForm.css'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 var file=""  
 const AddCast=() =>{
+    function alert()
+    {
+    toast.success("Cast Successfully Added",{
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      })
+
+
+}
+function alert1()
+    {
+    toast.warn("Please Entre All Required Data",{
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      })
+
+
+}
     const [data,setData]=useState({
         name:"",
         role:"",
@@ -32,6 +64,13 @@ const AddCast=() =>{
 
     function handleClick(){
         var formdata=new FormData()
+        if(data.name==="" || data.role==="" || data.info==="")
+        {
+            alert1();
+        }
+        else{
+            alert();
+        
 
         formdata.append('name',data.name);
         formdata.append('info',data.info);
@@ -39,11 +78,14 @@ const AddCast=() =>{
         formdata.append('date',data.date);
         formdata.append('file',file);
         //console.log(data.date)
+     //   alert();
         axios.post("http://localhost:3030/Cast/addCast",formdata,{})
     }
+}
 
 
-    return(
+    return(<>
+        <ToastContainer style={{marginTop:'30px'}}/>
         <div className="cast"> 
         <div className="castForm">
         <h1 style={{marginLeft:'400px'}}>AddCast</h1>
@@ -83,7 +125,8 @@ const AddCast=() =>{
         </Form>
         </div>
         </div>
-    );
+    </>);
+
 }
 
 export default AddCast;

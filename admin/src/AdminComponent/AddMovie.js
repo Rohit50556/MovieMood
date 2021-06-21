@@ -2,8 +2,13 @@ import React,{useState,useEffect} from 'react';
 import {Multiselect} from 'multiselect-react-dropdown';
 import {useHistory} from 'react-router-dom'
 import {Button,Form,Col} from "react-bootstrap";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import "../css/AddMovie.css"
 import axios from 'axios';
+
 var language=[]
 var genre=[]
 var cast=[]
@@ -15,6 +20,34 @@ function adddata(Cast,id){
 
 const AddMovie = () =>{
 
+  function alert()
+  {
+     toast.success("Movie Successfully Uploaded",{
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        })
+
+
+  }
+  function alert1()
+  {
+     toast.warn("Please Entere All Required Info",{
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        })
+
+
+  }
   let history=useHistory();
 const [castdetails,setCast]=useState([])
   useEffect(()=>{
@@ -172,6 +205,9 @@ const [castdetails,setCast]=useState([])
   }
 
 function handleClick(event){
+  if(input.moviename==="")
+    alert1();
+    else{
   formdata.append('file',file1);
   formdata.append('file',file2);
   formdata.append('info',input)
@@ -195,9 +231,10 @@ function handleClick(event){
   })
 
  axios.post('http://localhost:3030/Movie/addMovie',formdata,{}).then((res)=>{})
- history.push('/')
+alert();
+//  history.push('/')
 // axios.post('http://localhost:3030/Movie/addMovie',Array,{}).then((res)=>{})
-  
+}
   }
 return(<>
  <div className="addmovie" >
@@ -283,6 +320,7 @@ return(<>
     </div>
     </div>
     </div>
+    <ToastContainer style={{marginTop:'30px'}}/>   
  </>
  );
 }
