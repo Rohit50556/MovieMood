@@ -154,8 +154,9 @@ module.exports.getLoggedEndUserData = async (req,res) => {
 }
 
 module.exports.UpdateWallet = async (req,res) => {
+  console.log("===============")
   console.log(req.body)
-
+  console.log("===============")
   await Customer.findOne({email:req.body.email},function(err,CustomerData){
     if(err){console.log(err)
     res.status(500).send()
@@ -163,9 +164,10 @@ module.exports.UpdateWallet = async (req,res) => {
   else{
       CustomerData.wallet=req.body.wallet
     }
-     CustomerData.save();
-
+    CustomerData.save();
+  
   })
+
 }
 
 

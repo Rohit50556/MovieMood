@@ -16,11 +16,11 @@ const TheaterController = require("../controllers/TheaterController");
 const BookingController = require("../controllers/BookingController");
 const auth = require("../middleware/auth");
 
-
 const nodemailer = require('nodemailer');
 
-
+//Answer Of Query
 function sendMail(data){
+  
   //step1
     let transporter=nodemailer.createTransport({
         service:'gmail',
@@ -29,6 +29,7 @@ function sendMail(data){
           pass:'book@my@tickets'
         }
      })
+    
      //setp2
      let mailOptions={
        from:'bookmytickets233361@gmail.com',
@@ -48,6 +49,7 @@ function sendMail(data){
      })
 }
 
+//Booking Mail
 function sendBookingMail(data){
   //step1
   let transporter=nodemailer.createTransport({
@@ -76,6 +78,8 @@ function sendBookingMail(data){
 }
 
 
+
+//Cancel Mail
 function sendBookingCancelMail(data){
   //step1
   let transporter=nodemailer.createTransport({
@@ -112,7 +116,7 @@ router.post('/Send',(req,res)=>{
         message:req.body.message,
         messageto:req.body.messageto
     }
-//    console.log(data)
+    console.log(data)
     sendMail(data);
 });
 
@@ -142,10 +146,13 @@ router.post('/sendBookingCancelInfo',(req,res)=>{
         id:req.body.id,
         messageto:req.body.meesageTo
     }
+    
     console.log(data)
     
     sendBookingCancelMail(data);
 });
+
+
 
 
 //Routes For Movie
@@ -228,7 +235,7 @@ router.get("/getAllSnackMenu",SnacksMenuController.getAllSnacksMenu);
 //router.get("/getAllSwap",SwapSeatRequestController.getAllSwap);
 router.get("/getSwapSeatDataByUserName/:name",SwapSeatRequestController.getSwapSeatDataByUserName)
 router.post("/addSwap",SwapSeatRequestController.addSwap);
-
+router.post("/updateSwapStatus",SwapSeatRequestController.updateSwapStatus);
 
 router.post("/swapSeat",BookingController.swapSeat);
 //router.post("/swapSeat2",BookingController.swapSeat2);

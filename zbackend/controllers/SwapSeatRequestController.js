@@ -45,3 +45,19 @@ module.exports.getSwapSeatDataByUserName = async(req,res)=>
         await SwapSeatRequest.find({username2:req.params.name}).then((data) => (res.send(data)))
         .catch((err) => (console.log(err)));
 };
+
+module.exports.updateSwapStatus = async(req,res)=>
+
+{
+    console.log(req.body)
+    await SwapSeatRequest.findOne({_id:req.body.id},function(err,swapData){
+        if(err){console.log(err)
+            res.status(500).send()
+          }
+          else{
+                swapData.SwapStatus=true;
+            }
+            swapData.save();
+    })
+
+}
