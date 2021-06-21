@@ -4,6 +4,9 @@ import {Form,Col,Button} from 'react-bootstrap';
 import axios from 'axios';
 import "../css/TimeTable.css"
 import { Link,useHistory } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 //import { useHistory } from "react-router-dom";
 
 
@@ -39,6 +42,21 @@ function addDate(date,id){
  }
 
 const TimeTable = () =>{
+   function alert()
+       {
+
+              toast.success("Show Successfully Added",{
+             position: "bottom-left",
+             autoClose: 2000,
+             hideProgressBar: false,
+             closeOnClick: true,
+             pauseOnHover: true,
+             draggable: true,
+             progress: undefined,
+             })
+    
+    
+       }
    var history=useHistory();
    if(localStorage.getItem('token')==null){
       history.push('/Login')
@@ -311,6 +329,7 @@ const TimeTable = () =>{
          }
 //         console.log(date)
        axios.post('/ShowTiming/addShowTiming',dataInfo,{})
+       alert();
       // window.location.reload()
   }}
      
@@ -354,15 +373,16 @@ const TimeTable = () =>{
    <Multiselect  options={timelist}  displayValue="time" placeholder="time" onRemove={handletimeRemove} onSelect={handletimeAdd}  />      
    </Form.Group>
 </Form.Row>   
-   <Link to="/">
+   {/* <Link to="/"> */}
       <Button variant="primary" onClick={handleClick} style={{marginLeft:'260px'}}>
         Add 
     </Button>
-    </Link>
+    {/* </Link> */}
    </Form> 
     
    </div>
    </div>
+   <ToastContainer style={{marginLeft:'20px'}}/>
  </>
  );
 }

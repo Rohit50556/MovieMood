@@ -5,7 +5,11 @@ import { Button, Form, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import axios from "axios";
-import {useHistory} from "react-router-dom"
+import {useHistory} from "react-router-dom";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
   const Login  =() => 
   {
@@ -24,6 +28,19 @@ import {useHistory} from "react-router-dom"
 
     },[Data])
     
+    function alert()
+       {
+
+              toast.error("User Not Found",{
+             position: "top-center",
+             autoClose: 2000,
+             hideProgressBar: false,
+             closeOnClick: true,
+             pauseOnHover: true,
+             draggable: true,
+             progress: undefined,
+             })
+       }
 
     async function loginc(e){
       e.preventDefault();
@@ -53,7 +70,7 @@ import {useHistory} from "react-router-dom"
           // console.log(localStorage.getItem("loggedUser"))
        
         }).catch(error=>{
-          console.log(error);
+            alert();
         });
       } 
       catch (err) {
@@ -61,6 +78,7 @@ import {useHistory} from "react-router-dom"
       }
     }
 return (
+  <>
   <div className="Admin">
        <div className="TheaterTimeTable"></div>
       <div className="img2">
@@ -147,7 +165,8 @@ return (
         </div>
       </div>
       </div>
-    );
+      <ToastContainer style={{marginLeft:'10px'}}/>
+   </> );
 }
 
 export default Login;

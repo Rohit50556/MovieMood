@@ -3,12 +3,29 @@ import {Form,Col,Button} from 'react-bootstrap';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
 //import "../css/TimeTable.css"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 var id=localStorage.getItem("theaterId")
    
 
 const UpdateDetails = () =>{
-   
+   function alert()
+       {
+
+              toast.warn("Details Successfully Updated",{
+             position: "bottom-left",
+             autoClose: 2000,
+             hideProgressBar: false,
+             closeOnClick: true,
+             pauseOnHover: true,
+             draggable: true,
+             progress: undefined,
+             })
+    
+    
+       }
+
    var history=useHistory();
    if(localStorage.getItem('token')==null){
       history.push('/Login')
@@ -49,6 +66,7 @@ const UpdateDetails = () =>{
 
   
 function handleUpdate(){
+   alert();
    localStorage.setItem("scr" ,TheaterData.noOfScreen)
    console.log(TheaterData)
    axios.post("/Theater/updateTheater/"+id,TheaterData)
@@ -104,6 +122,7 @@ function handleUpdate(){
     
    </div>
    </div>
+   <ToastContainer style={{marginLeft:'10px'}}/>
  </>
  );
 }
