@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
 import User from "./User";
+
 ReactDOM.render(
-<BrowserRouter>
-   <User/> 
-</BrowserRouter>
+  <BrowserRouter>
+    <User/> 
+  </BrowserRouter>
+  
   ,document.getElementById('root')
 );
 

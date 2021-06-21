@@ -6,7 +6,10 @@ import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 import AuthContext from "../src/Context/AutoContext"
-import {useHistory} from "react-router-dom"
+import {useHistory} from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 axios.defaults.withCredentials=true;
 var userlogged;
   const Login  =() => 
@@ -22,6 +25,20 @@ var userlogged;
       }
 
     },[Data])
+
+    function alert()
+    {
+
+           toast.error("User Not Found",{
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          })
+    }
 
     const {loggedIn , setLoggedIn} =  useContext(AuthContext);
 
@@ -52,15 +69,15 @@ var userlogged;
           localStorage.setItem("gender", res.data.existingUser.gender)
           localStorage.setItem("wallet", res.data.existingUser.wallet)
 
-              history.push("/")
-              userlogged = (localStorage.getItem("loggedUser"))
-          console.log(localStorage.getItem("loggedUser"))
+          history.push("/")
+        //     userlogged = (localStorage.getItem("loggedUser"))
+          // console.log(localStorage.getItem("loggedUser"))
           
 
-          window.location.reload();
+           window.location.reload();
           // console.log(res.data)
         }).catch(error=>{
-          console.log(error);
+            alert();
         });
 
           
@@ -75,6 +92,7 @@ var userlogged;
       }
     }
 return (
+  <>
       <div className="img2">
         <div className="size">
           <div className="root-container">
@@ -160,6 +178,8 @@ return (
           </div>
         </div>
       </div>
+      <ToastContainer style={{marginLeft:'10px'}}/>
+      </>
     );
 }
 
